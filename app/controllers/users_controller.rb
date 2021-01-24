@@ -8,15 +8,15 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/signup' do
+    get '/register' do
         if logged_in
             redirect '/dashboard'
         else
-            erb :'/users/signup'
+            erb :'/users/register'
         end
     end
 
-    post '/signup' do
+    post '/register' do
         # create user if they don't exist; set flash message based on whether they already existed
         if !User.find_by(email: params[:email])
             User.create(:email => params[:email], :password => params[:password])
