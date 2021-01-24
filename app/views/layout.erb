@@ -5,32 +5,74 @@
       Racqueteer
       <%= " - #{yield_content :title}" if !(yield_content :title).empty? %> <%# include page title if one is given in ERB file %>
     </title>
+    <!-- responsive -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- styles -->
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- favicon code (realfavicongenerator.net) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
   </head>
   <body>
-    <div class="container">
-      <h1>Racqueteer</h1>
-      <br>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container">
+          <img src="/favicons/android-chrome-512x512.png" alt="tennis and ball logo" title="Racqueteer logo">
+          <a class="navbar-brand h1" href="/">Racqueteer</a>
+          <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <% if logged_in %>
+              <ul class="navbar-nav mr-auto mt-2">
+                <li class="nav-item"><a class="nav-link" href="/sports">Sports</a></li>
+                <li class="nav-item"><a class="nav-link" href="/racquets">Racquets</a></li>
+                <li class="nav-item"><a class="nav-link" href="/matches">Matches</a></li>
+                <li class="nav-item"><a class="nav-link" href="/coaching">Coaching</a></li>
+              </ul>
+              <ul class="navbar-nav ml-auto mt-2">
+                <li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
+              </ul>
+            <% else %>
+              <ul class="navbar-nav ml-auto mt-2">
+                <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container text-<% yield_content :main_align do %>left<% end %>"> <%# yield block to set alignment of main, with left as default %>
       <% if flash.has?(:message) %> <%# insert Boostrap alert if there's a flash message %>
-        <% if flash[:message][:type] == "success" %> <%# format alert according to message type %>
-          <div class="alert alert-success" role="alert">
-        <% elsif flash[:message][:type] == "warning" %>
-          <div class="alert alert-warning" role="alert">
-        <% elsif flash[:message][:type] == "failure" %>
-          <div class="alert alert-danger" role="alert">
-        <% end %>
+        <div class="alert alert-<%= flash[:message][:type] %>" role="alert"> <%# format alert according to message type %>
           <%= flash[:message][:content] %> <%# message content %>
         </div>
-      <% else %>
       <% end %>
       <%= yield %> <%# insert main content of ERB file %>
-      <% if logged_in %> <%# add footer links if logged in %>
-        <br>
-        <footer>
-          <p><%= '<a href="/dashboard">Dashboard</a> · ' if request.path_info != '/dashboard' %><a href="/logout">Log out</a></p>
-        </footer>
-      <% end %>
-    </div>
+    </main>
+    <footer>
+      <nav class="navbar navbar-light">
+        <div class="container justify-content-center text-center">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <span class="navbar-text">© Ynda Jas <%= DateTime.now.strftime('%Y') %></span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </footer>
   </body>
 </html>

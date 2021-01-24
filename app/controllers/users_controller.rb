@@ -44,7 +44,7 @@ class UsersController < ApplicationController
             redirect '/dashboard'
         # otherwise return to login page with flash message indicating failure
         else
-            flash[:message] = {:type => "failure", :content => "Incorrect email and/or password. Try again, unless you're a hacker!"}
+            flash[:message] = {:type => "danger", :content => "Incorrect email and/or password. Try again, unless you're a hacker!"}
             redirect '/login'
         end
     end
