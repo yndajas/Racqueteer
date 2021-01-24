@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>
+      Racketeer
+      <%= " - #{yield_content :title}" if !(yield_content :title).empty? %> <%# include page title if one is given in ERB file %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Racketeer</h1>
+      <br>
+      <% if flash.has?(:message) %> <%# insert Boostrap alert if there's a flash message %>
+        <% if flash[:message][:type] == "success" %> <%# format alert according to message type %>
+          <div class="alert alert-success" role="alert">
+        <% elsif flash[:message][:type] == "warning" %>
+          <div class="alert alert-warning" role="alert">
+        <% elsif flash[:message][:type] == "failure" %>
+          <div class="alert alert-danger" role="alert">
+        <% end %>
+          <%= flash[:message][:content] %> <%# message content %>
+        </div>
+      <% else %>
+      <% end %>
+      <%= yield %> <%# insert main content of ERB file %>
+      <% if logged_in %> <%# add footer links if logged in %>
+        <br>
+        <footer>
+          <p><%= '<a href="/dashboard">Dashboard</a> · ' if request.path_info != '/dashboard' %><a href="/logout">Log out</a></p>
+        </footer>
+      <% end %>
+    </div>
+  </body>
+</html>
