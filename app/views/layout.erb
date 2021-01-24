@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>
-      Racketeer
+      Racqueteer
       <%= " - #{yield_content :title}" if !(yield_content :title).empty? %> <%# include page title if one is given in ERB file %>
     </title>
     <link rel="stylesheet" href="/stylesheets/styles.css">
@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Racketeer</h1>
+      <h1>Racqueteer</h1>
       <br>
       <% if flash.has?(:message) %> <%# insert Boostrap alert if there's a flash message %>
         <% if flash[:message][:type] == "success" %> <%# format alert according to message type %>

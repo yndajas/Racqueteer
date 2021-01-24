@@ -1,6 +1,6 @@
 default: &default
   adapter: 'sqlite3'
-  database: 'db/racketeers.sqlite'
+  database: 'db/racqueteers.sqlite'
 
 development:
   <<: *default

@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         # create user if they don't exist; set flash message based on whether they already existed
         if !User.find_by(email: params[:email])
             User.create(:email => params[:email], :password => params[:password])
-            flash[:message] = {:type => "success", :content => "Account created. Log in to start racketeering!"}
+            flash[:message] = {:type => "success", :content => "Account created. Log in to start racqueteering!"}
         else
             flash[:message] = {:type => "warning", :content => "User exists. Try logging in"}
         end
