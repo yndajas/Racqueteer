@@ -6,5 +6,11 @@ class User < ActiveRecord::Base
     has_many :frame_models
     has_many :string_brands
     has_many :string_models
+    has_many :opponents
+    has_many :matches
+
+    def locations
+        self.matches.locations + self.coaching_sessions.locations
+    end
 end
   
