@@ -1,19 +1,12 @@
 class UsersController < ApplicationController
-    # homepage when logged in
+    # landing page when logged in
     get '/dashboard' do
-        if logged_in
-            erb :'/users/dashboard'
-        else
-            redirect '/'
-        end
+        erb :'/users/dashboard'
     end
 
     get '/register' do
-        if logged_in
-            redirect '/dashboard'
-        else
-            erb :'/users/register'
-        end
+        redirect '/dashboard' if logged_in
+        erb :'/users/register'
     end
 
     post '/register' do
@@ -29,11 +22,8 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        if logged_in
-            redirect '/dashboard'
-        else
-            erb :'/users/login'
-        end
+        redirect '/dashboard' if logged_in
+        erb :'/users/login'
     end
 
     post '/login' do
