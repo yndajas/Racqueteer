@@ -1,4 +1,4 @@
-class Sport < ActiveRecord::Base
+class FrameModel < ActiveRecord::Base
     belongs_to :user
     has_many :racquets
 end

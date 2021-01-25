@@ -10,7 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_040330) do
+ActiveRecord::Schema.define(version: 2021_01_25_041503) do
+
+  create_table "frame_brands", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+  end
+
+  create_table "frame_models", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+  end
+
+  create_table "racquets", force: :cascade do |t|
+    t.integer "frame_brand_id"
+    t.integer "frame_model_id"
+    t.integer "string_brand_id"
+    t.integer "string_model_id"
+    t.integer "sport_id"
+    t.integer "user_id"
+  end
+
+  create_table "sports", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+  end
+
+  create_table "string_brands", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+  end
+
+  create_table "string_models", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
