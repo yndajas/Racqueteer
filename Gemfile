@@ -12,3 +12,4 @@ gem 'pry' # open console with binding (when `binding.pry` is run)
 gem 'bcrypt' # password hashing
 gem 'tux' # command line interface for web app
 gem 'rack-flash3' # flash messages
+gem 'rails-erd' # entity relationship diagrams
