@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
     has_many :string_models
     has_many :opponents
     has_many :matches
+    has_many :coaches
+    has_many :coaching_sessions
 
     def locations
         self.matches.locations + self.coaching_sessions.locations

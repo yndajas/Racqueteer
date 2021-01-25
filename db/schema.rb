@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_111042) do
+ActiveRecord::Schema.define(version: 2021_01_25_143642) do
+
+  create_table "coaches", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+  end
+
+  create_table "coaching_session_coaches", force: :cascade do |t|
+    t.integer "coaching_session_id"
+    t.integer "coach_id"
+  end
+
+  create_table "coaching_sessions", force: :cascade do |t|
+    t.integer "sport_id"
+    t.integer "location_id"
+    t.datetime "date"
+    t.string "focus"
+    t.string "notes"
+    t.integer "user_id"
+  end
 
   create_table "frame_brands", force: :cascade do |t|
     t.string "name"
