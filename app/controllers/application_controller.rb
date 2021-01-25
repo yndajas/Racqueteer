@@ -37,4 +37,14 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
   end
+
+  before do
+    # redirect to a downcased version of the request path if the request is not lower case
+    redirect "#{request.path.downcase}" if request.path != request.path.downcase
+
+    # redirect to homepage when logged out unless path is '/', '/login' or '/register'
+    if !logged_in && request.path != '/' && request.path != '/login' && request.path != '/register' 
+      redirect '/'
+    end
+  end
 end
