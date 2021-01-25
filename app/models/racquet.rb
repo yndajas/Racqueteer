@@ -5,4 +5,6 @@ class Racquet < ActiveRecord::Base
     belongs_to :string_model
     belongs_to :sport
     belongs_to :user
+    has_many :match_racquets
+    has_many :matches, through: :match_racquets
 end
