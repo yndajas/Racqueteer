@@ -1,11 +1,15 @@
+<% content_for :title do %>Sports<% end %>
 <h2>Sports</h2>
+<br>
 <% if !@sports.empty? %>
     <h3>Your sports</h3>
     <ul>
-    <% @sports.each do |sport| %>
+    <% @sports.order(:name).each do |sport| %>
         <%= "<li><a href=\"/sports/#{sport.slug}\">#{sport.name}</a> [<a href=\"/sports/#{sport.slug}/edit\">edit</a>]</li>" %>
     <% end %>
+    </ul>
 <% else %>
     <p>You currently have no sports registered!</p>
-    <a href="/sports/new"><button type="button" class="btn btn-primary">Create sport</button></a>
 <% end %>
+<br>
+<a href="/sports/new"><button type="button" class="btn btn-success">Add sport</button></a>
