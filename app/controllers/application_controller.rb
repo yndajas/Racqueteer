@@ -39,6 +39,13 @@ class ApplicationController < Sinatra::Base
   end
 
   before do
+    # remove any trailing slashes (1+) except when full request path is '/'
+    if request.path != '/' && request.path[-1] == '/'
+      path = request.path
+      path = path[0..-2] until path[-1] != '/'
+      redirect path
+    end
+
     # redirect to a downcased version of the request path if the request is not lower case
     redirect "#{request.path.downcase}" if request.path != request.path.downcase
 
