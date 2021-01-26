@@ -1,0 +1,28 @@
+<% content_for :title do %>Racquets<% end %>
+<h2>Racquets</h2>
+<br>
+<%# check if there are any racquets %>
+<% if !@racquets.empty? %>
+    <%# create sport variable to track which sport's racquets the app is on %>
+    <% sport = @racquets.first.sport.name %>
+    <h3>Your racquets</h3>
+    <h4><%= sport %></h4>
+    <ul>
+    <%# iterate over racquets %>
+    <% @racquets.each do |racquet| %>
+        <%# update sport variable if a new sport's racquets have been reached %>
+        <% if racquet.sport.name != sport %>
+            </ul>
+            <% sport = racquet.sport.name %>
+            <%= "<h4>#{sport}</h4>" %>
+            <ul>
+        <% end %>
+        <%# list racquet %>
+        <%= "<li><a href=\"/racquets/#{racquet.id}\">#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}</a> [<a href=\"/racquets/#{racquet.id}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no sports registered!</p>
+<% end %>
+<br>
+<a href="/racquets/new"><button type="button" class="btn btn-success">Add racquet</button></a>
