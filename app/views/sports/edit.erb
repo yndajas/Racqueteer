@@ -4,7 +4,7 @@
 <form action="/sports/<%= @sport.slug %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="PATCH">
     <label for="name"><b>Name</b></label><br>
-    <input type="text" name="name" value="<%= @sport.name %>" required><br><br>
+    <input type="text" name="name" id="name" value="<%= @sport.name %>" required><br><br>
     <input type="submit" value="Update" class="btn btn-success">
 </form>
 <br>
