@@ -6,5 +6,6 @@ end
 
 use Rack::MethodOverride
 use UsersController
+use RacquetsController
 use SportsController
 run ApplicationController
