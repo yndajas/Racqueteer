@@ -5,6 +5,7 @@ html {
 
 header {
     background-color: #dfff4f;
+    border-bottom: 1px solid rgba(0,0,0,.25);
 }
 
 nav .navbar-brand {
@@ -44,4 +45,5 @@ footer {
     width: 100%;
     height: 60px;
     background-color: #07DEC4;
+    border-top: 1px solid rgba(0,0,0,.25);
 }
