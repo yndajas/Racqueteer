@@ -15,7 +15,7 @@ class UsersController < ApplicationController
             User.create(:email => params[:email], :password => params[:password])
             flash[:message] = {:type => "success", :content => "Account created. Log in to start racqueteering!"}
         else
-            flash[:message] = {:type => "warning", :content => "User exists. Try logging in"}
+            flash[:message] = {:type => "warning", :content => "User already exists. Try logging in"}
         end
         # redirect to log in page
         redirect '/login'
