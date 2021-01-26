@@ -1,0 +1,48 @@
+<% content_for :title do %>Add racquet<% end %>
+<h2>Add racquet</h2>
+<br>
+<form action="/racquets" method="POST">
+    <label for="sport"><b>Sport</b></label><br>
+    <input type="text" list="sports" name="sport" id="sport">
+    <datalist id="sports">
+        <% @sports.each do |sport| %>
+            <option><%= sport.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <b>Frame</b><br>
+    <label for="frame_brand">Brand</label><br>
+    <input type="text" list="frame_brands" name="frame_brand" id="frame_brand">
+    <datalist id="frame_brands">
+        <% @frame_brands.each do |frame_brand| %>
+            <option><%= frame_brand.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <label for="frame_model">Model</label><br>
+    <input type="text" list="frame_models" name="frame_model" id="frame_model">
+    <datalist id="frame_models">
+        <% @frame_models.each do |frame_model| %>
+            <option><%= frame_model.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <b>Strings</b><br>
+    <label for="string_brand">Brand</label><br>
+    <input type="text" list="string_brands" name="string_brand" id="string_brand">
+    <datalist id="string_brands">
+        <% @string_brands.each do |string_brand| %>
+            <option><%= string_brand.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <label for="string_model">Model</label><br>
+    <input type="text" list="string_models" name="string_model" id="string_model">
+    <datalist id="string_models">
+        <% @string_models.each do |string_model| %>
+            <option><%= string_model.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <input type="submit" value="Save" class="btn btn-success">
+</form>
