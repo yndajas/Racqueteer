@@ -59,7 +59,7 @@
       </nav>
     </header>
     <main class="container text-<% yield_content :main_align do %>left<% end %>"> <%# yield block to set alignment of main, with left as default %>
-      <% if flash.has?(:message) %> <%# insert Boostrap alert if there's a flash message %>
+      <% if flash.has?(:message) %> <%# insert Bootstrap alert if there's a flash message %>
         <div class="alert alert-<%= flash[:message][:type] %>" role="alert"> <%# format alert according to message type %>
           <%= flash[:message][:content] %> <%# message content %>
         </div>
