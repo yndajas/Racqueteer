@@ -1,3 +1,6 @@
+#custom
+/public/images/source
+
 *.gem
 *.rbc
 /.config
