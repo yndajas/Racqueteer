@@ -24,6 +24,8 @@ main {
 
 body {
     padding-bottom: 60px;
+    background-image: url("/images/background.png");
+    background-repeat: repeat;
 }
 
 footer {
