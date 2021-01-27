@@ -1,0 +1,58 @@
+<% content_for :title do %>Edit racquet<% end %>
+<h2>Edit racquet</h2>
+<br>
+<form action="/racquets/<%= @racquet.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <label for="sport"><b>Sport</b></label><br>
+    <input type="text" list="sports" name="sport" id="sport" value="<%= @racquet.sport.name %>">
+    <datalist id="sports">
+        <% @sports.order(:name).each do |sport| %>
+            <option><%= sport.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <b>Frame</b><br>
+    <label for="frame_brand">Brand</label><br>
+    <input type="text" list="frame_brands" name="frame_brand" id="frame_brand" value="<%= @racquet.frame_brand.name %>">
+    <datalist id="frame_brands">
+        <% @frame_brands.order(:name).each do |frame_brand| %>
+            <option><%= frame_brand.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <label for="frame_model">Model</label><br>
+    <input type="text" list="frame_models" name="frame_model" id="frame_model" value="<%= @racquet.frame_model.name %>">
+    <datalist id="frame_models">
+        <% @frame_models.order(:name).each do |frame_model| %>
+            <option><%= frame_model.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <b>Strings</b><br>
+    <label for="string_brand">Brand</label><br>
+    <input type="text" list="string_brands" name="string_brand" id="string_brand" value="<%= @racquet.string_brand.name %>">
+    <datalist id="string_brands">
+        <% @string_brands.order(:name).each do |string_brand| %>
+            <option><%= string_brand.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <label for="string_model">Model</label><br>
+    <input type="text" list="string_models" name="string_model" id="string_model" value="<%= @racquet.string_model.name %>">
+    <datalist id="string_models">
+        <% @string_models.order(:name).each do |string_model| %>
+            <option><%= string_model.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <input type="submit" value="Update" class="btn btn-success">
+</form>
+<br>
+<hr>
+<h3>Delete racquet</h3>
+<br>
+<p><b>Warning:</b> deleting a racquet will delete all associated matches. This cannot be undone.</p>
+<form action="/racquets/<%= @racquet.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" onclick="return confirm('Warning: deleting a racquet will delete all associated matches. This cannot be undone.\n\nAre you sure you wish to delete the racquet?');" value="Delete racquet" class="btn btn-danger">
+</form>
