@@ -1,0 +1,32 @@
+<% content_for :title do %>Account<% end %>
+<h2>Account</h2>
+<br>
+<h3>Update email</h3>
+<br>
+<form action="/users/<%= current_user.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <input type="email" name="email" placeholder="New email" required><br><br>
+    <input type="password" name="password" id="password" placeholder="Current password" required><br><br>
+    <input type="checkbox" onclick="togglePasswordVisibility()"> Show password<br><br>
+    <input type="submit" value="Update email" class="btn btn-primary">
+</form>
+<br>
+<hr>
+<h3>Update password</h3>
+<br>
+<form action="/users/<%= current_user.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <input type="password" name="new_password" class="password" placeholder="New password" required><br><br>
+    <input type="password" name="password" class="password" placeholder="Current password" required><br><br>
+    <input type="checkbox" onclick="togglePasswordsVisibility()"> Show passwords<br><br>
+    <input type="submit" value="Update password" class="btn btn-primary">
+</form>
+<br>
+<hr>
+<h3>Delete account</h3>
+<br>
+<p><b>Warning:</b> deleting your account will delete all associated data. This cannot be undone.</p>
+<form action="/users/<%= current_user.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" onclick="return confirm('Warning: deleting your account will delete all associated data. This cannot be undone.\n\nAre you sure you wish to delete your account?');" value="Delete account" class="btn btn-danger">
+</form>
