@@ -35,3 +35,10 @@ task :erd_generate => ["erd:check_dependencies", "erd:options"] do
 
   `cmd.exe /C start #{file}`
 end
+
+# reset database - drop, migrate, seed
+task :resetdb do
+  Rake::Task["db:drop"].execute
+  Rake::Task["db:migrate"].execute 
+  Rake::Task["db:seed"].execute 
+end
