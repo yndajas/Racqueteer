@@ -3,7 +3,7 @@
 <br>
 <form action="/racquets" method="POST">
     <label for="sport"><b>Sport</b></label><br>
-    <input type="text" list="sports" name="sport" id="sport">
+    <input type="text" list="sports" name="sport" id="sport" required>
     <datalist id="sports">
         <% @sports.order(:name).each do |sport| %>
             <option><%= sport.name %></option>
@@ -12,7 +12,7 @@
     <br><br>
     <b>Frame</b><br>
     <label for="frame_brand">Brand</label><br>
-    <input type="text" list="frame_brands" name="frame_brand" id="frame_brand">
+    <input type="text" list="frame_brands" name="frame_brand" id="frame_brand" required>
     <datalist id="frame_brands">
         <% @frame_brands.order(:name).each do |frame_brand| %>
             <option><%= frame_brand.name %></option>
@@ -20,7 +20,7 @@
     </datalist>
     <br><br>
     <label for="frame_model">Model</label><br>
-    <input type="text" list="frame_models" name="frame_model" id="frame_model">
+    <input type="text" list="frame_models" name="frame_model" id="frame_model" required>
     <datalist id="frame_models">
         <% @frame_models.order(:name).each do |frame_model| %>
             <option><%= frame_model.name %></option>
@@ -29,7 +29,7 @@
     <br><br>
     <b>Strings</b><br>
     <label for="string_brand">Brand</label><br>
-    <input type="text" list="string_brands" name="string_brand" id="string_brand">
+    <input type="text" list="string_brands" name="string_brand" id="string_brand" required>
     <datalist id="string_brands">
         <% @string_brands.order(:name).each do |string_brand| %>
             <option><%= string_brand.name %></option>
@@ -37,7 +37,7 @@
     </datalist>
     <br><br>
     <label for="string_model">Model</label><br>
-    <input type="text" list="string_models" name="string_model" id="string_model">
+    <input type="text" list="string_models" name="string_model" id="string_model" required>
     <datalist id="string_models">
         <% @string_models.order(:name).each do |string_model| %>
             <option><%= string_model.name %></option>
