@@ -55,6 +55,7 @@ class ApplicationController < Sinatra::Base
     end
 
     # remove leading/trailing whitespace in params (on post/patch requests)
+    # this may be redundant as values are trimmed client side via the trim_inputs.js script (which should also prevent whitespace alone in a required field being submittable), but this is an extra safeguard
     if request.post? || request.patch?
       params.each { |key, value| params[key] = value.strip }
     end
