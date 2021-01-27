@@ -49,9 +49,14 @@ class ApplicationController < Sinatra::Base
     # redirect to a downcased version of the request path if the request is not lower case
     redirect "#{request.path.downcase}" if request.path != request.path.downcase
 
-    # redirect to homepage when logged out unless path is '/', '/login' or '/register'
-    if !logged_in && request.path != '/' && request.path != '/login' && request.path != '/register' 
+    # redirect to homepage when logged out unless path is '/', '/login', '/register' or post '/users'
+    if !logged_in && request.path != '/' && request.path != '/login' && request.path != '/register' && !(request.post? && request.path == '/users')
       redirect '/'
+    end
+
+    # remove leading/trailing whitespace in params (on post/patch requests)
+    if request.post? || request.patch?
+      params.each { |key, value| params[key] = value.strip }
     end
   end
 end
