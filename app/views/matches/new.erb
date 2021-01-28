@@ -32,7 +32,7 @@
     <%# date %>
     <label id="date_label" for="date"><b>Date</b></label><br>
     <input id="date" type="date" name="date" placeholder="Date" required><br><br>
-    <input type="checkbox" onclick="toggleDates()"> Multiple days
+    <input type="checkbox" id="multiple_days_checkbox" onclick="toggleDates()"> <label for="multiple_days_checkbox">Multiple days</label>
     <br><br>
     <%# racquets %>
     <b>Racquets</b><br>
@@ -45,14 +45,14 @@
             <%= "<br><em>#{sport}</em><br>" %>
         <% end %>
         <%# list racquet %>
-        <input type="checkbox" name="racquet_ids[]" value="<%= racquet.id %>"> <%= "#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}" %><br>
+        <input type="checkbox" name="racquet_ids[]" id="racquet_<%= racquet.id %>" value="<%= racquet.id %>"> <label for="racquet_<%= racquet.id %>"><%= "#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}" %></label><br>
     <% end %>
     <br>
     <%# new racquet(s) %>
     <b>New racquet</b><br>
     <div class = "new_racquet" id="new_racquet_1">
         <em>Frame</em><br>
-        <label class="new_racquet_child" for="frame_brand_1">Brand</label>
+        <label class="new_racquet_child" for="frame_brand_1">Brand</label>&nbsp;
         <input class="new_racquet_child" type="text" list="frame_brands_1" name="new_racquets[][frame_brand]" id="frame_brand_1" required>
         <datalist class="new_racquet_child" id="frame_brands_1">
             <% @frame_brands.order(:name).each do |frame_brand| %>
@@ -60,7 +60,7 @@
             <% end %>
         </datalist>
         &nbsp;&nbsp;
-        <label class="new_racquet_child" for="frame_model_1">Model</label>
+        <label class="new_racquet_child" for="frame_model_1">Model</label>&nbsp;
         <input class="new_racquet_child" type="text" list="frame_models_1" name="new_racquets[][frame_model]" id="frame_model_1" required>
         <datalist class="new_racquet_child" id="frame_models_1">
             <% @frame_models.order(:name).each do |frame_model| %>
@@ -69,7 +69,7 @@
         </datalist>
         <br><br>
         <em>Strings</em><br>
-        <label class="new_racquet_child" for="string_brand_1">Brand</label>
+        <label class="new_racquet_child" for="string_brand_1">Brand</label>&nbsp;
         <input class="new_racquet_child" type="text" list="string_brands_1" name="new_racquets[][string_brand]" id="string_brand_1" required>
         <datalist class="new_racquet_child" id="string_brands_1">
             <% @string_brands.order(:name).each do |string_brand| %>
@@ -77,7 +77,7 @@
             <% end %>
         </datalist>
         &nbsp;&nbsp;
-        <label class="new_racquet_child" for="string_model_1">Model</label>
+        <label class="new_racquet_child" for="string_model_1">Model</label>&nbsp;
         <input class="new_racquet_child" type="text" list="string_models_1" name="new_racquets[][string_model]" id="string_model_1" required>
         <datalist class="new_racquet_child" id="string_models_1">
             <% @string_models.order(:name).each do |string_model| %>

@@ -26,6 +26,7 @@ main {
 body {
     padding-bottom: 60px;
     background-repeat: repeat;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body.colour {
@@ -47,3 +48,12 @@ footer {
     background-color: #07DEC4;
     border-top: 1px solid rgba(0,0,0,.25);
 }
+
+input[type=text], input[type=email], input[type=password], input[type=date] {
+    height: 38px;
+    padding: 6px 10px;
+    border-radius: .25rem;
+    border-color: rgba(0,0,0,.25);
+    box-sizing: border-box;
+}
+  

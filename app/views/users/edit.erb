@@ -7,7 +7,7 @@
     <input type="hidden" name="_method" value="PATCH">
     <input type="email" name="email" placeholder="New email" required><br><br>
     <input type="password" name="password" id="password" placeholder="Current password" required><br><br>
-    <input type="checkbox" onclick="togglePasswordVisibility()"> Show password<br><br>
+    <input type="checkbox" id="update_email_checkbox" onclick="togglePasswordVisibility()"> <label for="update_email_checkbox">Show password</label><br><br>
     <input type="submit" value="Update email" class="btn btn-primary">
 </form>
 <br>
@@ -18,7 +18,7 @@
     <input type="hidden" name="_method" value="PATCH">
     <input type="password" name="new_password" class="password" placeholder="New password" required><br><br>
     <input type="password" name="password" class="password" placeholder="Current password" required><br><br>
-    <input type="checkbox" onclick="togglePasswordsVisibility()"> Show passwords<br><br>
+    <input type="checkbox" id="update_password_checkbox" onclick="togglePasswordsVisibility()"> <label for="update_password_checkbox">Show passwords</label><br><br>
     <input type="submit" value="Update password" class="btn btn-primary">
 </form>
 <br>
