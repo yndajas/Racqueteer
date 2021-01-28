@@ -35,7 +35,6 @@
     <input type="checkbox" onclick="toggleDates()"> Multiple days
     <br><br>
     <%# racquets %>
-
     <b>Racquets</b><br>
     <% sport = @racquets.first.sport.name %>
     <em><%= sport %></em><br>
@@ -49,6 +48,7 @@
         <input type="checkbox" name="racquet_ids[]" value="<%= racquet.id %>"> <%= "#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}" %><br>
     <% end %>
     <br>
+    <%# new racquet(s) %>
     <b>New racquet</b><br>
     <div class = "new_racquet" id="new_racquet_1">
         <em>Frame</em><br>
