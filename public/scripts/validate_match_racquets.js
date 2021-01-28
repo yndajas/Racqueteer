@@ -6,7 +6,7 @@ function validateMatchRacquets() {
             return true;
         } else {
             // if no racquet provided, send alert and return false
-            alert("Please select a racquet");
+            alert("Please select an existing racquet or add a new one");
             return false;
         }
     } else { // if partial information provided on a new racquet, send alert and return false
@@ -50,3 +50,9 @@ function validateRacquetProvided(new_racquet_divs) {
     // return false if incomplete racquet information
     return false;
 }
+  
+$('#match_form').on('submit', function(event){
+    if (!validateMatchRacquets()){
+        event.preventDefault();
+    }
+});

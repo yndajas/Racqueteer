@@ -1,7 +1,7 @@
 <% content_for :title do %>Add match<% end %>
 <h2>Add match</h2>
 <br>
-<form action="/matches" method="POST">
+<form id="match_form" action="/matches" method="POST"" >
     <%# sport %>
     <label for="sport"><b>Sport</b></label><br>
     <input type="text" list="sports" name="sport" id="sport" required>
@@ -101,5 +101,5 @@
       <option>Incomplete</option>
     </select>
     <br><br>
-    <input type="submit" onclick="validateMatchRacquets()" value="Save" class="btn btn-success">
+    <input type="submit" value="Save" class="btn btn-success">
 </form>
