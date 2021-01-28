@@ -21,6 +21,8 @@ function extraRacquet() {
             // update for
             child.setAttribute("for", child.getAttribute("for").slice(0, -1) + next_id_number);
         } else if (child.nodeName === "INPUT") {
+            // reset value
+            child.value = "";
             // update ID
             child.id = child.id.slice(0, -1) + next_id_number;
             // update list
