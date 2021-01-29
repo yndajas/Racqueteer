@@ -40,14 +40,14 @@ class ApplicationController < Sinatra::Base
     def get_ordered_racquets
       # execute SQL to filter racquets by user then order by sport, frame brand, frame model, string model, string brand
       sql = <<-SQL
-      SELECT id, user_id, sport, frame_brand, frame_model, string_brand, string_model, sport_id, frame_brand_id, frame_model_id, string_model_id, string_brand_id
-      FROM (SELECT * FROM racquets WHERE user_id = #{current_user.id}) r
-      INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON r.sport_id = s.sport_id2
-      INNER JOIN (SELECT id as frame_brand_id2, name as frame_brand FROM frame_brands) fb ON r.frame_brand_id = fb.frame_brand_id2
-      INNER JOIN (SELECT id as frame_model_id2, name as frame_model FROM frame_models) fb ON r.frame_model_id = fb.frame_model_id2
-      INNER JOIN (SELECT id as string_brand_id2, name as string_brand FROM string_brands) fb ON r.string_brand_id = fb.string_brand_id2
-      INNER JOIN (SELECT id as string_model_id2, name as string_model FROM string_models) fb ON r.string_model_id = fb.string_model_id2
-      ORDER BY user_id, sport, frame_brand, frame_model, string_brand, string_model
+        SELECT id, user_id, sport, frame_brand, frame_model, string_brand, string_model, sport_id, frame_brand_id, frame_model_id, string_model_id, string_brand_id
+        FROM (SELECT * FROM racquets WHERE user_id = #{current_user.id}) r
+        INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON r.sport_id = s.sport_id2
+        INNER JOIN (SELECT id as frame_brand_id2, name as frame_brand FROM frame_brands) fb ON r.frame_brand_id = fb.frame_brand_id2
+        INNER JOIN (SELECT id as frame_model_id2, name as frame_model FROM frame_models) fb ON r.frame_model_id = fb.frame_model_id2
+        INNER JOIN (SELECT id as string_brand_id2, name as string_brand FROM string_brands) fb ON r.string_brand_id = fb.string_brand_id2
+        INNER JOIN (SELECT id as string_model_id2, name as string_model FROM string_models) fb ON r.string_model_id = fb.string_model_id2
+        ORDER BY user_id, sport, frame_brand, frame_model, string_brand, string_model
       SQL
       @racquets = Racquet.find_by_sql(sql)
     end
@@ -58,6 +58,38 @@ class ApplicationController < Sinatra::Base
       @frame_models = FrameModel.where(user_id: current_user.id)
       @string_brands = StringBrand.where(user_id: current_user.id)
       @string_models = StringModel.where(user_id: current_user.id)
+    end
+
+    def formatted_date(event, type)
+      # set style
+      if type == "short"
+        date_style = '%d/%m/%Y'
+        divider = "-"
+      elsif type == "long"
+        date_style = '%-d %B %Y'
+        divider = " - "
+      # for date inputs (e.g. "date input", "start date input" or "end date input")
+      else
+        date_style = "%Y-%m-%d"
+      end
+      # if event is a match, format based on type and whether start and end dates are the same
+      if event.is_a?(Match)
+        # if type is "end date input", format end date
+        if type == "end date input"
+          date_string = DateTime.parse(event.end_date.to_s).strftime(date_style)
+        # if type is anything else, initially format start date
+        else
+          date_string = DateTime.parse(event.start_date.to_s).strftime(date_style)
+          # if type is not "start date input" or "date input" and the start and end dates differ, add formatted end date
+          if type != "start date input" && type != "date input" && event.start_date != event.end_date
+            date_string += "#{divider}#{DateTime.parse(event.end_date.to_s).strftime(date_style)}"
+          end
+        end
+      # for coaching sessions, format the only date attribute
+      else
+        date_string = DateTime.parse(event.date.to_s).strftime(date_style)
+      end
+      date_string
     end
   end
 
