@@ -1,7 +1,7 @@
 <% content_for :title do %>Add match<% end %>
 <h2>Add match</h2>
 <br>
-<form id="match_form" action="/matches" method="POST"" >
+<form id="match_form" action="/matches" method="POST">
     <%# sport %>
     <label for="sport"><b>Sport</b></label><br>
     <input type="text" list="sports" name="sport" id="sport" required>
@@ -31,7 +31,7 @@
     <br><br>
     <%# date %>
     <label id="date_label" for="date"><b>Date</b></label><br>
-    <input id="date" type="date" name="date" placeholder="Date" required><br><br>
+    <input id="date" type="date" name="date" required><br><br>
     <input type="checkbox" id="multiple_days_checkbox" onclick="toggleDates()"> <label for="multiple_days_checkbox">Multiple days</label>
     <br><br>
     <%# racquets %>

@@ -2,7 +2,7 @@
 <h2>Edit sport</h2>
 <br>
 <form action="/sports/<%= @sport.slug %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="_method" value="PATCH">
     <label for="name"><b>Name</b></label><br>
     <input type="text" name="name" id="name" value="<%= @sport.name %>" required><br><br>
     <input type="submit" value="Update" class="btn btn-success">
@@ -13,6 +13,6 @@
 <br>
 <p><b>Warning:</b> deleting a sport will delete all associated racquets, matches and coaching sessions. This cannot be undone.</p>
 <form action="/sports/<%= @sport.slug %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_method" value="DELETE">
     <input type="submit" onclick="return confirm('Warning: deleting a sport will delete all associated racquets, matches and coaching sessions. This cannot be undone.\n\nAre you sure you wish to delete the sport?');" value="Delete sport" class="btn btn-danger">
 </form>

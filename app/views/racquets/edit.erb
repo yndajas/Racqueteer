@@ -2,7 +2,7 @@
 <h2>Edit racquet</h2>
 <br>
 <form action="/racquets/<%= @racquet.id %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="_method" value="PATCH">
     <label for="sport"><b>Sport</b></label><br>
     <input type="text" list="sports" name="sport" id="sport" value="<%= @racquet.sport.name %>" required>
     <datalist id="sports">
@@ -53,6 +53,6 @@
 <br>
 <p><b>Warning:</b> deleting a racquet will delete all associated matches. This cannot be undone.</p>
 <form action="/racquets/<%= @racquet.id %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_method" value="DELETE">
     <input type="submit" onclick="return confirm('Warning: deleting a racquet will delete all associated matches. This cannot be undone.\n\nAre you sure you wish to delete the racquet?');" value="Delete racquet" class="btn btn-danger">
 </form>
