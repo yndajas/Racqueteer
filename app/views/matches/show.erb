@@ -1,0 +1,5 @@
+<% content_for :title do %><%= formatted_date(@match, "short") %> vs <%= @match.opponent.name %><% end %>
+<h2><%= formatted_date(@match, "long") %> vs <%= @match.opponent.name %></h2>
+<br>
+SHOW match <%= @match.id %>
+TODO
