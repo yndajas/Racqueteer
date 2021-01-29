@@ -1,7 +1,20 @@
 <% content_for :title do %><%= "#{@racquet.frame_brand.name} #{@racquet.frame_model.name} x #{@racquet.string_brand.name} #{@racquet.string_model.name}" %><% end %>
 <h2><%= "#{@racquet.frame_brand.name} #{@racquet.frame_model.name} x #{@racquet.string_brand.name} #{@racquet.string_model.name}" %></h2>
 <br>
+<b>Sport:</b> <%= @racquet.sport.name %><br>
+<b>Frame brand:</b> <%= @racquet.frame_brand.name %><br>
+<b>Frame model:</b> <%= @racquet.frame_model.name %><br>
+<b>String brand:</b> <%= @racquet.string_brand.name %><br>
+<b>String model:</b> <%= @racquet.string_model.name %>
+<br><br>
 
-SHOW RACQUET <%= @racquet.id %>
-
-- show matches
+<% if !@racquet.matches.empty? %>
+    <h3>Matches</h3>
+    <ul>
+    <% @matches.each do |match| %>
+        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.name.downcase} vs #{match.opponent.name}</a></li>" %>
+    <% end %>
+    </ul>
+<% end %>
+<br>
+<a href="/racquets/<%= @racquet.id %>/edit"><button type="button" class="btn btn-primary">Edit racquet</button></a>
