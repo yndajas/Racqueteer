@@ -47,7 +47,7 @@ class ApplicationController < Sinatra::Base
         INNER JOIN (SELECT id as frame_model_id2, name as frame_model FROM frame_models) fb ON r.frame_model_id = fb.frame_model_id2
         INNER JOIN (SELECT id as string_brand_id2, name as string_brand FROM string_brands) fb ON r.string_brand_id = fb.string_brand_id2
         INNER JOIN (SELECT id as string_model_id2, name as string_model FROM string_models) fb ON r.string_model_id = fb.string_model_id2
-        ORDER BY user_id, sport, frame_brand, frame_model, string_brand, string_model
+        ORDER BY sport, frame_brand, frame_model, string_brand, string_model
       SQL
       @racquets = Racquet.find_by_sql(sql)
     end
