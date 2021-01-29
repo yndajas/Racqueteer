@@ -6,7 +6,9 @@
 <ul><li><%= @match.score %></p></li></ul>
 <h4>Racquets</h4>
 <ul>
-<% @match.racquets.each do |racquet| %>
+<% @racquets.each do |racquet| %>
         <%= "<li><a href=\"/racquets/#{racquet.id}\">#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}</a></li>" %>
 <% end %>
 </ul>
+<br>
+<a href="/matches/<%= @match.id %>/edit"><button type="button" class="btn btn-primary">Edit match</button></a>
