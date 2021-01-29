@@ -42,3 +42,14 @@ task :resetdb do
   Rake::Task["db:migrate"].execute 
   Rake::Task["db:seed"].execute 
 end
+
+# log object counts for user 1
+task :objectcounts do
+  puts "#{User.all.length} users\n\n"
+  user = User.first
+  puts "#{user.email}..."
+  puts "#{user.sports.length} sports    | #{user.opponents.length} opponents         | #{user.locations.length} locations"
+  puts "#{user.racquets.length} racquets  | #{user.frame_brands.length} frame brands      | #{user.frame_models.length} frame models | #{user.string_brands.length} string brands | #{user.string_models.length} string models"
+  puts "#{user.matches.length} matches   | #{user.matches.collect { |match| match.match_racquets}.flatten.uniq.length } match racquets"
+  puts "#{user.coaches.length} coaches   | #{user.coaching_sessions.length} coaching sessions | #{user.coaching_sessions.collect { |coaching_session| coaching_session.coaching_session_coaches }.flatten.uniq.length} coaching session coaches"
+end
