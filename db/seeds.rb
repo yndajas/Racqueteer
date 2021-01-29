@@ -53,9 +53,9 @@ opponent1 = Opponent.create(:name => "Rafael Nadal", :user_id => user1.id)
 opponent2 = Opponent.create(:name => "Naomi Osaka", :user_id => user1.id)
 u2opponent1 = Opponent.create(:name => "Serena Williams", :user_id => user2.id)
 
-match1 = Match.create(:sport_id => sport1.id, :opponent_id => opponent1.id, :location_id => location1.id, :start_date => "25/01/2021", :end_date => "26/01/2021", :score => "0-6, 7-6, 6-4", :result => "Win", :user_id => user1.id)
-match2 = Match.create(:sport_id => sport1.id, :opponent_id => opponent2.id, :location_id => location2.id, :start_date => "27/01/2021", :end_date => "27/01/2021", :score => "0-6, 6-1, 5-7", :result => "Loss", :user_id => user1.id)
-u2match1 = Match.create(:sport_id => u2sport1.id, :opponent_id => u2opponent1.id, :location_id => u2location1.id, :start_date => "24/01/2021", :end_date => "24/01/2021", :score => "0-6, 6-4, 6-7", :result => "Loss", :user_id => user2.id)
+match1 = Match.create(:sport_id => sport1.id, :opponent_id => opponent1.id, :location_id => location1.id, :start_date => "25/01/2021", :end_date => "26/01/2021", :score => "0-6, 7-6, 6-4", :result_id => 1, :user_id => user1.id)
+match2 = Match.create(:sport_id => sport1.id, :opponent_id => opponent2.id, :location_id => location2.id, :start_date => "27/01/2021", :end_date => "27/01/2021", :score => "0-6, 6-1, 5-7", :result_id => 3, :user_id => user1.id)
+u2match1 = Match.create(:sport_id => u2sport1.id, :opponent_id => u2opponent1.id, :location_id => u2location1.id, :start_date => "24/01/2021", :end_date => "24/01/2021", :score => "0-6, 6-4, 6-7", :result_id => 3, :user_id => user2.id)
 
 matchracquet1 = MatchRacquet.create(:match_id => match1.id, :racquet_id => racquet2.id)
 matchracquet2 = MatchRacquet.create(:match_id => match1.id, :racquet_id => racquet1.id)
