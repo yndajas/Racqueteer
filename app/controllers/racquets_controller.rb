@@ -62,23 +62,16 @@ class RacquetsController < ApplicationController
     # destroy
     delete '/racquets/:id' do
         racquet = Racquet.find(params[:id])
-
-        # arrays for storing the found matches and match racquets
-        match_racquets = []
-        matches = []
-        # get all match racquets belonging to the current racquet 
-        MatchRacquet.where(racquet_id: racquet.id).each do |match_racquet|
-            # add match in current match racquet to matches array
-            matches << Match.find(match_racquet.match_id)
-            # add all match racquets associated with match to match_racquets array (picking up match racquets that belong to other racquets but the same match, as well as current match racquet)
-            match_racquets << MatchRacquet.where(match_id: match_racquet.match_id)
+        # get all the racquet's matches
+        racquet.matches.each do |match|
+            # destroy all their match racquets (thereby covering any additional match racquets created based on other racquets associated with the match)
+            match.match_racquets.destroy_all
+            # destroy the match
+            match.destroy
         end
-
-        # destroy collected records
-        match_racquets.flatten.uniq.each { |match_racquet| match_racquet.destroy }
-        matches.uniq.each { |match| match.destroy }
+        #destroy the racquet
         racquet.destroy
-
+        # flash and redirect
         flash[:message] = {:type => "primary", :content => "Racquet successfully deleted"}
         redirect "/racquets"
     end
