@@ -2,14 +2,24 @@ class UsersController < ApplicationController
     # show/landing page when logged in
     get '/dashboard' do
         @sports = Sport.where(user_id: current_user.id)
-        get_ordered_racquets
+        # get racquets (not ordered by sport)
+        sql = <<-SQL
+            SELECT id, user_id, frame_brand, frame_model, string_brand, string_model, frame_brand_id, frame_model_id, string_model_id, string_brand_id
+            FROM (SELECT * FROM racquets WHERE user_id = #{current_user.id}) r
+            INNER JOIN (SELECT id as frame_brand_id2, name as frame_brand FROM frame_brands) fb ON r.frame_brand_id = fb.frame_brand_id2
+            INNER JOIN (SELECT id as frame_model_id2, name as frame_model FROM frame_models) fb ON r.frame_model_id = fb.frame_model_id2
+            INNER JOIN (SELECT id as string_brand_id2, name as string_brand FROM string_brands) fb ON r.string_brand_id = fb.string_brand_id2
+            INNER JOIN (SELECT id as string_model_id2, name as string_model FROM string_models) fb ON r.string_model_id = fb.string_model_id2
+            ORDER BY LOWER(frame_brand), LOWER(frame_model), LOWER(string_brand), LOWER(string_model)
+        SQL
+        @racquets = Racquet.find_by_sql(sql)
         # get five most recent matches (not ordered by sport)
         sql = <<-SQL
             SELECT id, user_id, sport, opponent, start_date, end_date, result_id, sport_id, opponent_id
             FROM (SELECT * FROM matches WHERE user_id = #{current_user.id}) m
             INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON m.sport_id = s.sport_id2
             INNER JOIN (SELECT id as opponent_id2, name as opponent FROM opponents) o ON m.opponent_id = o.opponent_id2
-            ORDER BY start_date DESC, end_date DESC, opponent, result_id
+            ORDER BY start_date DESC, end_date DESC, LOWER(opponent), result_id
             LIMIT 5
         SQL
         @recent_matches = Match.find_by_sql(sql)
@@ -18,7 +28,7 @@ class UsersController < ApplicationController
             SELECT id, user_id, sport, focus, date, sport_id
             FROM (SELECT * FROM coaching_sessions WHERE user_id = #{current_user.id}) cs
             INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON cs.sport_id = s.sport_id2
-            ORDER BY date DESC, focus
+            ORDER BY date DESC, LOWER(focus)
             LIMIT 5
         SQL
         @recent_coaching_sessions = CoachingSession.find_by_sql(sql)
