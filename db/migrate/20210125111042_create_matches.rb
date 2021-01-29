@@ -7,7 +7,7 @@ class CreateMatches < ActiveRecord::Migration[6.0]
       t.datetime :start_date
       t.datetime :end_date
       t.string :score
-      t.string :result
+      t.integer :result_id
       t.integer :user_id
     end
 
