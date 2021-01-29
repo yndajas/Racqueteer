@@ -105,10 +105,10 @@
     <label for="result"><b>Result</b></label><br>
     <select name="result" required>
       <option></option>
-      <option <%= "selected=\"selected\"" if @match.result == "Win" %>>Win</option>
-      <option <%= "selected=\"selected\"" if @match.result == "Loss" %>>Loss</option>
-      <option <%= "selected=\"selected\"" if @match.result == "Tie" %>>Tie</option>
-      <option <%= "selected=\"selected\"" if @match.result == "Incomplete" %>>Incomplete</option>
+      <option value="1" <%= "selected=\"selected\"" if @match.result.name == "Win" %>>Win</option>
+      <option value="3" <%= "selected=\"selected\"" if @match.result.name == "Loss" %>>Loss</option>
+      <option value="2" <%= "selected=\"selected\"" if @match.result.name == "Tie" %>>Tie</option>
+      <option value="4" <%= "selected=\"selected\"" if @match.result.name == "Incomplete" %>>Incomplete</option>
     </select>
     <br><br>
     <input type="submit" value="Save" class="btn btn-success">
