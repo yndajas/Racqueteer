@@ -34,20 +34,22 @@
     <input id="date" type="date" name="date" required><br><br>
     <input type="checkbox" id="multiple_days_checkbox" onclick="toggleDates()"> <label for="multiple_days_checkbox">Multiple days</label>
     <br><br>
-    <%# racquets %>
-    <b>Racquets</b><br>
-    <% sport = @racquets.first.sport.name %>
-    <em><%= sport %></em><br>
-    <% @racquets.each do |racquet| %>
-        <%# update sport variable if a new sport's racquets have been reached %>
-        <% if racquet.sport.name != sport %>
-            <% sport = racquet.sport.name %>
-            <%= "<br><em>#{sport}</em><br>" %>
+    <%# existing racquets %>
+    <% if !@racquets.empty? %>
+        <b>Racquets</b><br>
+        <% sport = @racquets.first.sport.name %>
+        <em><%= sport %></em><br>
+        <% @racquets.each do |racquet| %>
+            <%# update sport variable if a new sport's racquets have been reached %>
+            <% if racquet.sport.name != sport %>
+                <% sport = racquet.sport.name %>
+                <%= "<br><em>#{sport}</em><br>" %>
+            <% end %>
+            <%# list racquet %>
+            <input type="checkbox" class="existing_racquet_checkbox" name="racquet_ids[]" id="racquet_<%= racquet.id %>" value="<%= racquet.id %>"> <label for="racquet_<%= racquet.id %>"><%= "#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}" %></label><br>
         <% end %>
-        <%# list racquet %>
-        <input type="checkbox" class="existing_racquet_checkbox" name="racquet_ids[]" id="racquet_<%= racquet.id %>" value="<%= racquet.id %>"> <label for="racquet_<%= racquet.id %>"><%= "#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}" %></label><br>
+        <br>
     <% end %>
-    <br>
     <%# new racquet(s) %>
     <b>New racquet</b><br>
     <div class = "new_racquet" id="new_racquet_1">
@@ -95,10 +97,10 @@
     <label for="result"><b>Result</b></label><br>
     <select name="result" required>
       <option selected="selected"></option>
-      <option>Win</option>
-      <option>Loss</option>
-      <option>Tie</option>
-      <option>Incomplete</option>
+      <option value="1">Win</option>
+      <option value="3">Loss</option>
+      <option value="2">Tie</option>
+      <option value="4">Incomplete</option>
     </select>
     <br><br>
     <input type="submit" value="Save" class="btn btn-success">
