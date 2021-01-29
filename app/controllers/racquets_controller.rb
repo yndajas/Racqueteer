@@ -31,6 +31,8 @@ class RacquetsController < ApplicationController
     get '/racquets/:id' do
         @racquet = Racquet.where(:id => params[:id], :user_id => current_user.id)[0]
         if @racquet
+            # get ordered matches and filter by those that use the current racquet
+            @matches = get_ordered_matches.collect { |match| match if match.racquets.include?(@racquet) }.compact
             erb :'/racquets/show'
         else
             flash[:message] = {:type => "warning", :content => "Racquet not found"}
