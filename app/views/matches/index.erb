@@ -18,11 +18,11 @@
             <ul>
         <% end %>
         <%# list match %>
-        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.downcase} vs #{match.opponent.name}</a> [<a href=\"/matches/#{match.id}/edit\">edit</a>]</li>" %>
+        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.name.downcase} vs #{match.opponent.name}</a> [<a href=\"/matches/#{match.id}/edit\">edit</a>]</li>" %>
     <% end %>
     </ul>
+    <br>
 <% else %>
     <p>You currently have no matches recorded!</p>
 <% end %>
-<br>
 <a href="/matches/new"><button type="button" class="btn btn-success">Add match</button></a>
