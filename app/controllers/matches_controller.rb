@@ -27,6 +27,8 @@ class MatchesController < ApplicationController
     get '/matches/:id' do
         @match = Match.where(:id => params[:id], :user_id => current_user.id)[0]
         if @match
+            # get ordered racquets and filter by those used in the current match
+            @racquets = get_ordered_racquets.collect { |racquet| racquet if racquet.matches.include?(@match) }.compact
             erb :'/matches/show'
         else
             flash[:message] = {:type => "warning", :content => "Match not found"}
@@ -71,17 +73,6 @@ class MatchesController < ApplicationController
             get_racquet_associates
             @locations = Location.where(user_id: current_user.id)
             @opponents = Opponent.where(user_id: current_user.id)
-        end
-
-        def get_ordered_matches
-            sql = <<-SQL
-                SELECT id, user_id, sport, opponent, start_date, end_date, result_id, sport_id, opponent_id
-                FROM (SELECT * FROM matches WHERE user_id = #{current_user.id}) m
-                INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON m.sport_id = s.sport_id2
-                INNER JOIN (SELECT id as opponent_id2, name as opponent FROM opponents) o ON m.opponent_id = o.opponent_id2
-                ORDER BY sport, start_date DESC, end_date DESC, opponent, result_id
-            SQL
-            @matches = Match.find_by_sql(sql)      
         end
       
         def set_associates(match)

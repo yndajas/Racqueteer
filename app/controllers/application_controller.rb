@@ -60,6 +60,17 @@ class ApplicationController < Sinatra::Base
       @string_models = StringModel.where(user_id: current_user.id)
     end
 
+    def get_ordered_matches
+      sql = <<-SQL
+          SELECT id, user_id, sport, opponent, start_date, end_date, result_id, sport_id, opponent_id
+          FROM (SELECT * FROM matches WHERE user_id = #{current_user.id}) m
+          INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON m.sport_id = s.sport_id2
+          INNER JOIN (SELECT id as opponent_id2, name as opponent FROM opponents) o ON m.opponent_id = o.opponent_id2
+          ORDER BY sport, start_date DESC, end_date DESC, opponent, result_id
+      SQL
+      @matches = Match.find_by_sql(sql)      
+    end
+
     def formatted_date(event, type)
       # set style
       if type == "short"
