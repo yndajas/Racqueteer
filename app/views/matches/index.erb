@@ -1,0 +1,28 @@
+<% content_for :title do %>Matches<% end %>
+<h2>Matches</h2>
+<br>
+<%# check if there are any racquets %>
+<% if !@matches.empty? %>
+    <%# create sport variable to track which sport's racquets the app is on %>
+    <% sport = @matches.first.sport.name %>
+        <h3>Your matches</h3>
+    <h4><%= sport %></h4>
+    <ul>
+    <%# iterate over matches %>
+    <% @matches.each do |match| %>
+        <%# update sport variable if a new sport's racquets have been reached %>
+        <% if match.sport.name != sport %>
+            </ul>
+            <% sport = match.sport.name %>
+            <%= "<h4>#{sport}</h4>" %>
+            <ul>
+        <% end %>
+        <%# list match %>
+        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.downcase} vs #{match.opponent.name}</a> [<a href=\"/matches/#{match.id}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no matches recorded!</p>
+<% end %>
+<br>
+<a href="/matches/new"><button type="button" class="btn btn-success">Add match</button></a>
