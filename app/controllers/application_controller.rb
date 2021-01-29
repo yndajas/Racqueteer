@@ -47,9 +47,30 @@ class ApplicationController < Sinatra::Base
         INNER JOIN (SELECT id as frame_model_id2, name as frame_model FROM frame_models) fb ON r.frame_model_id = fb.frame_model_id2
         INNER JOIN (SELECT id as string_brand_id2, name as string_brand FROM string_brands) fb ON r.string_brand_id = fb.string_brand_id2
         INNER JOIN (SELECT id as string_model_id2, name as string_model FROM string_models) fb ON r.string_model_id = fb.string_model_id2
-        ORDER BY sport, frame_brand, frame_model, string_brand, string_model
+        ORDER BY LOWER(sport), LOWER(frame_brand), LOWER(frame_model), LOWER(string_brand), LOWER(string_model)
       SQL
       @racquets = Racquet.find_by_sql(sql)
+    end
+
+    def get_ordered_matches
+      sql = <<-SQL
+        SELECT id, user_id, sport, opponent, start_date, end_date, result_id, sport_id, opponent_id
+        FROM (SELECT * FROM matches WHERE user_id = #{current_user.id}) m
+        INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON m.sport_id = s.sport_id2
+        INNER JOIN (SELECT id as opponent_id2, name as opponent FROM opponents) o ON m.opponent_id = o.opponent_id2
+        ORDER BY LOWER(sport), start_date DESC, end_date DESC, LOWER(opponent), result_id
+      SQL
+      @matches = Match.find_by_sql(sql)      
+    end
+
+    def get_ordered_coaching_sessions
+      sql = <<-SQL
+        SELECT id, user_id, sport, focus, date, sport_id
+        FROM (SELECT * FROM coaching_sessions WHERE user_id = #{current_user.id}) cs
+        INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON cs.sport_id = s.sport_id2
+        ORDER BY LOWER(sport), date DESC, LOWER(focus)
+      SQL
+      @coaching_sessions = CoachingSession.find_by_sql(sql)
     end
 
     def get_racquet_associates
@@ -58,17 +79,6 @@ class ApplicationController < Sinatra::Base
       @frame_models = FrameModel.where(user_id: current_user.id)
       @string_brands = StringBrand.where(user_id: current_user.id)
       @string_models = StringModel.where(user_id: current_user.id)
-    end
-
-    def get_ordered_matches
-      sql = <<-SQL
-          SELECT id, user_id, sport, opponent, start_date, end_date, result_id, sport_id, opponent_id
-          FROM (SELECT * FROM matches WHERE user_id = #{current_user.id}) m
-          INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON m.sport_id = s.sport_id2
-          INNER JOIN (SELECT id as opponent_id2, name as opponent FROM opponents) o ON m.opponent_id = o.opponent_id2
-          ORDER BY sport, start_date DESC, end_date DESC, opponent, result_id
-      SQL
-      @matches = Match.find_by_sql(sql)      
     end
 
     def formatted_date(event, type)
