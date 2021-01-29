@@ -8,8 +8,8 @@
         <%= "<li><a href=\"/sports/#{sport.slug}\">#{sport.name}</a> [<a href=\"/sports/#{sport.slug}/edit\">edit</a>]</li>" %>
     <% end %>
     </ul>
+    <br>
 <% else %>
     <p>You currently have no sports registered!</p>
 <% end %>
-<br>
 <a href="/sports/new"><button type="button" class="btn btn-success">Add sport</button></a>
