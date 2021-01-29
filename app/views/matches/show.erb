@@ -1,5 +1,12 @@
 <% content_for :title do %><%= formatted_date(@match, "short") %> vs <%= @match.opponent.name %><% end %>
 <h2><%= formatted_date(@match, "long") %> vs <%= @match.opponent.name %></h2>
 <br>
-SHOW match <%= @match.id %>
-TODO
+<h3><%= @match.sport.name %> at <%= @match.location.name %></h3>
+<h4><%= @match.result.name %></h4>
+<ul><li><%= @match.score %></p></li></ul>
+<h4>Racquets</h4>
+<ul>
+<% @match.racquets.each do |racquet| %>
+        <%= "<li><a href=\"/racquets/#{racquet.id}\">#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}</a></li>" %>
+<% end %>
+</ul>
