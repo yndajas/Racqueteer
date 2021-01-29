@@ -1,5 +1,5 @@
-<% content_for :title do %>View racquet<% end %>
-<h2>View sport</h2>
+<% content_for :title do %><%= "#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}" %><% end %>
+<h2><%= "#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}" %></h2>
 <br>
 
 SHOW RACQUET <%= @racquet.id %>
