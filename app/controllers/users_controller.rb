@@ -1,6 +1,27 @@
 class UsersController < ApplicationController
     # show/landing page when logged in
     get '/dashboard' do
+        @sports = Sport.where(user_id: current_user.id)
+        get_ordered_racquets
+        # get five most recent matches (not ordered by sport)
+        sql = <<-SQL
+            SELECT id, user_id, sport, opponent, start_date, end_date, result_id, sport_id, opponent_id
+            FROM (SELECT * FROM matches WHERE user_id = #{current_user.id}) m
+            INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON m.sport_id = s.sport_id2
+            INNER JOIN (SELECT id as opponent_id2, name as opponent FROM opponents) o ON m.opponent_id = o.opponent_id2
+            ORDER BY start_date DESC, end_date DESC, opponent, result_id
+            LIMIT 5
+        SQL
+        @recent_matches = Match.find_by_sql(sql)
+        # get five most recent coaching sessions (not ordered by sport)
+        sql = <<-SQL
+            SELECT id, user_id, sport, focus, date, sport_id
+            FROM (SELECT * FROM coaching_sessions WHERE user_id = #{current_user.id}) cs
+            INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON cs.sport_id = s.sport_id2
+            ORDER BY date DESC, focus
+            LIMIT 5
+        SQL
+        @recent_coaching_sessions = CoachingSession.find_by_sql(sql)
         erb :'/users/dashboard'
     end
 

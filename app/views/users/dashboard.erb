@@ -1,4 +1,71 @@
 <% content_for :title do %>Dashboard<% end %>
 <h2>Dashboard</h2>
 <br>
-<p>Summary of user data</p>
+<h3>Recent matches</h3>
+<% if !@recent_matches.empty? %>
+    <ul>
+    <%# iterate over matches %>
+    <% @recent_matches.each do |match| %>
+        <%# list match %>
+        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.name.downcase} vs #{match.opponent.name} at #{match.sport.name.downcase}</a> [<a href=\"/matches/#{match.id}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no matches recorded!</p>
+    <a href="/matches/new"><button type="button" class="btn btn-success">Add match</button></a>
+    <br>
+<% end %>
+<hr>
+<h3>Recent coaching</h3>
+<% if !@recent_coaching_sessions.empty? %>
+    <ul>
+    <%# iterate over coaching sessions %>
+    <% @recent_coaching_sessions.each do |coaching_session| %>
+        <%# list match %>
+        <% focus = coaching_session.focus[0].downcase + coaching_session.focus[1..-1] %>
+        <%= "<li>#{formatted_date(coaching_session, "long")}: <a href=\"/coaching/#{coaching_session.id}\">#{coaching_session.sport.name.downcase}, focused on #{focus}</a> [<a href=\"/coaching/#{coaching_session.id}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no coaching sessions recorded!</p>
+    <a href="/coaching/new"><button type="button" class="btn btn-success">Add coaching session</button></a>
+    <br>
+<% end %>
+<hr>
+<h3>Your sports</h3>
+<% if !@sports.empty? %>
+    <ul>
+    <% @sports.order(:name).each do |sport| %>
+        <%= "<li><a href=\"/sports/#{sport.slug}\">#{sport.name}</a> [<a href=\"/sports/#{sport.slug}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no sports registered!</p>
+    <a href="/sports/new"><button type="button" class="btn btn-success">Add sport</button></a>
+    <br>
+<% end %>
+<hr>
+<h3>Your racquets</h3>
+<%# check if there are any racquets %>
+<% if !@racquets.empty? %>
+    <%# create sport variable to track which sport's racquets the app is on %>
+    <% sport = @racquets.first.sport.name %>
+    <h4><%= sport %></h4>
+    <ul>
+    <%# iterate over racquets %>
+    <% @racquets.each do |racquet| %>
+        <%# update sport variable if a new sport's racquets have been reached %>
+        <% if racquet.sport.name != sport %>
+            </ul>
+            <% sport = racquet.sport.name %>
+            <%= "<h4>#{sport}</h4>" %>
+            <ul>
+        <% end %>
+        <%# list racquet %>
+        <%= "<li><a href=\"/racquets/#{racquet.id}\">#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}</a> [<a href=\"/racquets/#{racquet.id}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no sports registered!</p>
+    <a href="/racquets/new"><button type="button" class="btn btn-success">Add racquet</button></a>
+<% end %>
