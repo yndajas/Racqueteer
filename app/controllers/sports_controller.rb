@@ -26,6 +26,12 @@ class SportsController < ApplicationController
     get '/sports/:slug' do
         @sport = Sport.find_by_slug_and_id(params[:slug], current_user.id)
         if @sport
+            # get ordered racquets and filter by those that are for the current sport
+            @racquets = get_ordered_racquets.collect { |racquet| racquet if racquet.sport == @sport }.compact
+            # get ordered matches and filter by those that are of the current sport
+            @matches = get_ordered_matches.collect { |match| match if match.sport == @sport }.compact
+            # get ordered coaching sessions and filter by those that are of the current sport
+            @coaching_sessions = get_ordered_coaching_sessions.collect { |coaching_session| coaching_session if coaching_session.sport == @sport }.compact
             erb :'/sports/show'
         else
             flash[:message] = {:type => "warning", :content => "Sport not found"}

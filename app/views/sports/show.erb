@@ -1,4 +1,38 @@
 <% content_for :title do %><%= @sport.name %><% end %>
 <h2><%= @sport.name %></h2>
 <br>
-TODO
+<% if !@matches.empty? %>
+    <h3>Matches</h3>
+    <ul>
+    <%# iterate over matches %>
+    <% @matches.each do |match| %>
+        <%# list match %>
+        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.name.downcase} vs #{match.opponent.name}</a></li>" %>
+    <% end %>
+    </ul>
+    <hr>
+<% end %>
+<% if !@coaching_sessions.empty? %>
+    <h3>Coaching</h3>
+    <ul>
+    <%# iterate over coaching sessions %>
+    <% @coaching_sessions.each do |coaching_session| %>
+        <%# list match %>
+        <% focus = coaching_session.focus[0].downcase + coaching_session.focus[1..-1] %>
+        <%= "<li>#{formatted_date(coaching_session, "long")}: <a href=\"/coaching/#{coaching_session.id}\">focused on #{focus}</a></li>" %>
+    <% end %>
+    </ul>
+    <hr>
+<% end %>
+<% if !@racquets.empty? %>
+    <h3>Racquets</h3>
+    <ul>
+    <%# iterate over racquets %>
+    <% @racquets.each do |racquet| %>
+        <%# list racquet %>
+        <%= "<li><a href=\"/racquets/#{racquet.id}\">#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}</a></li>" %>
+    <% end %>
+    </ul>
+<% end %>
+<br>
+<a href="/sports/<%= @sport.slug %>/edit"><button type="button" class="btn btn-primary">Edit sport</button></a>
