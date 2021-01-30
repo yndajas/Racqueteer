@@ -5,6 +5,7 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 use Rack::MethodOverride
+use CoachingSessionsController
 use MatchesController
 use RacquetsController
 use SportsController
