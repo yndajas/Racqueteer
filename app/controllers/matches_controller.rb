@@ -65,6 +65,7 @@ class MatchesController < ApplicationController
         match = Match.find(params[:id])
         match.match_racquets.destroy_all
         match.destroy
+        redirect '/matches'
     end
 
     helpers do
