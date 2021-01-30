@@ -1,4 +1,4 @@
-<% content_for :title do %>coaching - <%= formatted_date(@coaching_session, "short") %><% end %>
+<% content_for :title do %>Coaching session - <%= formatted_date(@coaching_session, "short") %><% end %>
 <h2>Coaching on <%= formatted_date(@coaching_session, "long") %></h2>
 <br>
 <h3><%= @coaching_session.sport.name %> at <%= @coaching_session.location.name %></h3>
