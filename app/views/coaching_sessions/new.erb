@@ -1,0 +1,48 @@
+<% content_for :title do %>Add coaching session<% end %>
+<h2>Add coaching session</h2>
+<br>
+<form id="coaching_session_form" action="/coaching" method="POST">
+    <%# sport %>
+    <label for="sport"><b>Sport</b></label><br>
+    <input type="text" list="sports" name="sport" id="sport" required>
+    <datalist id="sports">
+        <% @sports.order('LOWER(name)').each do |sport| %>
+            <option><%= sport.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <%# existing coaches %>
+    <% if !@coaches.empty? %>
+        <b>Coaches</b><br>
+        <% @coaches.each do |coach| %>
+            <%# list coach %>
+            <input type="checkbox" class="existing_coach_checkbox" name="coach_ids[]" id="coach_<%= coach.id %>" value="<%= coach.id %>"> <label for="coach_<%= coach.id %>"><%= "#{coach.name}" %></label><br>
+        <% end %>
+        <br>
+    <% end %>
+    <%# new coach(es) %>
+    <label for="new_coach_1"><b>New coach</b></label><br>
+    <input class="new_coach" type="text" name="new_coaches[]" id="new_coach_1">
+    <br><br>
+    <button type="button" class="navbar-text btn btn-primary" onclick="extraCoach();">Add another new coach</button>
+    <br><br>
+    <%# location %>
+    <label for="location"><b>Location</b></label><br>
+    <input type="text" list="locations" name="location" id="location" required>
+    <datalist id="locations">
+        <% @locations.order('LOWER(name)').each do |location| %>
+            <option><%= location.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <%# date %>
+    <label id="date_label" for="date"><b>Date</b></label><br>
+    <input id="date" type="date" name="date" required><br><br>
+    <%# focus %>
+    <label for="focus"><b>Focus</b></label><br>
+    <input  id="focus" type="text" name="focus" required><br><br>
+    <%# notes %>
+    <label for="notes"><b>Notes</b></label> (optional)<br>
+    <textarea id="notes" name="notes" rows="5" cols="50"></textarea><br><br>
+    <input type="submit" value="Save" class="btn btn-success">
+</form>
