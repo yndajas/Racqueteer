@@ -1,4 +1,4 @@
-<% content_for :title do %><%= formatted_date(@match, "short") %> vs <%= @match.opponent.name %><% end %>
+<% content_for :title do %>match - <%= formatted_date(@match, "short") %> vs <%= @match.opponent.name %><% end %>
 <h2><%= formatted_date(@match, "long") %> vs <%= @match.opponent.name %></h2>
 <br>
 <h3><%= @match.sport.name %> at <%= @match.location.name %></h3>
