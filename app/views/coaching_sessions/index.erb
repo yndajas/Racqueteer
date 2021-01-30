@@ -1,0 +1,29 @@
+<% content_for :title do %>Coaching sessions<% end %>
+<h2>Coaching sessions</h2>
+<br>
+<%# check if there are any coaching sessions %>
+<% if !@coaching_sessions.empty? %>
+    <%# create sport variable to track which sport's coaching sessions the app is on %>
+    <% sport = @coaching_sessions.first.sport.name %>
+        <h3>Your coaching sessions</h3>
+    <h4><%= sport %></h4>
+    <ul>
+    <%# iterate over matches %>
+    <% @coaching_sessions.each do |coaching_session| %>
+        <%# update sport variable if a new sport's coaching sessions have been reached %>
+        <% if coaching_session.sport.name != sport %>
+            </ul>
+            <% sport = coaching_session.sport.name %>
+            <%= "<h4>#{sport}</h4>" %>
+            <ul>
+        <% end %>
+        <%# list coaching session %>
+        <% focus = coaching_session.focus[0].downcase + coaching_session.focus[1..-1] %>
+        <%= "<li>#{formatted_date(coaching_session, "long")}: <a href=\"/coaching/#{coaching_session.id}\">#{focus}</a> [<a href=\"/coaching/#{coaching_session.id}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+    <br>
+<% else %>
+    <p>You currently have no coaching sessions recorded!</p>
+<% end %>
+<a href="/coaching/new"><button type="button" class="btn btn-success">Add coaching session</button></a>
