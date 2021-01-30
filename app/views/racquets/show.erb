@@ -1,4 +1,4 @@
-<% content_for :title do %><%= "#{@racquet.frame_brand.name} #{@racquet.frame_model.name} x #{@racquet.string_brand.name} #{@racquet.string_model.name}" %><% end %>
+<% content_for :title do %>Racquets - <%= "#{@racquet.frame_brand.name} #{@racquet.frame_model.name} x #{@racquet.string_brand.name} #{@racquet.string_model.name}" %><% end %>
 <h2><%= "#{@racquet.frame_brand.name} #{@racquet.frame_model.name} x #{@racquet.string_brand.name} #{@racquet.string_model.name}" %></h2>
 <br>
 <b>Sport:</b> <%= @racquet.sport.name %><br>
