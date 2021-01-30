@@ -6,7 +6,7 @@ function extraRacquet() {
     // work out what number should be in the next div and its child's IDs
     var next_id_number = parseInt(last_nrd.id.slice(-1)) + 1;
     // clone div
-    var new_div = last_nrd.cloneNode(true); // check what true does - might copy input values
+    var new_div = last_nrd.cloneNode(true);
     // change ID to "new_racquet" + next_id_number
     new_div.id = new_div.id.slice(0, -1) + next_id_number;
     // find form
