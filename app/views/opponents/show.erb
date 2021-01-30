@@ -1,0 +1,15 @@
+<% content_for :title do %>Opponents - <%= @opponent.name %><% end %>
+<h2><%= @opponent.name %></h2>
+<br>
+<% if !@matches.empty? %>
+    <h3>Matches</h3>
+    <ul>
+    <%# iterate over matches %>
+    <% @matches.each do |match| %>
+        <%# list match %>
+        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.name.downcase} (#{match.score})</a></li>" %>
+    <% end %>
+    </ul>
+<% end %>
+<br>
+<a href="/sports/<%= @opponent.slug %>/edit"><button type="button" class="btn btn-primary">Edit opponent</button></a>
