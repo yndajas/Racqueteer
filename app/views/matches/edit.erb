@@ -8,7 +8,7 @@
     <label for="sport"><b>Sport</b></label><br>
     <input type="text" list="sports" name="sport" id="sport" value="<%= @match.sport.name %>" required>
     <datalist id="sports">
-        <% @sports.order(:name).each do |sport| %>
+        <% @sports.order('LOWER(name)').each do |sport| %>
             <option><%= sport.name %></option>
         <% end %>
     </datalist>
@@ -17,7 +17,7 @@
     <label for="opponent"><b>Opponent</b></label><br>
     <input type="text" list="opponents" name="opponent" id="opponent" value="<%= @match.opponent.name %>" required>
     <datalist id="opponents">
-        <% @opponents.order(:name).each do |opponent| %>
+        <% @opponents.order('LOWER(name)').each do |opponent| %>
             <option><%= opponent.name %></option>
         <% end %>
     </datalist>
@@ -26,7 +26,7 @@
     <label for="location"><b>Location</b></label><br>
     <input type="text" list="locations" name="location" id="location" value="<%= @match.location.name %>" required>
     <datalist id="locations">
-        <% @locations.order(:name).each do |location| %>
+        <% @locations.order('LOWER(name)').each do |location| %>
             <option><%= location.name %></option>
         <% end %>
     </datalist>
@@ -44,7 +44,7 @@
         <input type="checkbox" id="multiple_days_checkbox" onclick="toggleDates()" checked> <label for="multiple_days_checkbox">Multiple days</label>
     <% end %>
     <br><br>
-    <%# racquets %>
+    <%# existing racquets %>
     <b>Racquets</b><br>
     <% sport = @racquets.first.sport.name %>
     <em><%= sport %></em><br>
@@ -65,7 +65,7 @@
         <label class="new_racquet_child" for="frame_brand_1">Brand</label>&nbsp;
         <input class="new_racquet_child" type="text" list="frame_brands_1" name="new_racquets[][frame_brand]" id="frame_brand_1">
         <datalist class="new_racquet_child" id="frame_brands_1">
-            <% @frame_brands.order(:name).each do |frame_brand| %>
+            <% @frame_brands.order('LOWER(name)').each do |frame_brand| %>
                 <option><%= frame_brand.name %></option>
             <% end %>
         </datalist>
@@ -73,7 +73,7 @@
         <label class="new_racquet_child" for="frame_model_1">Model</label>&nbsp;
         <input class="new_racquet_child" type="text" list="frame_models_1" name="new_racquets[][frame_model]" id="frame_model_1">
         <datalist class="new_racquet_child" id="frame_models_1">
-            <% @frame_models.order(:name).each do |frame_model| %>
+            <% @frame_models.order('LOWER(name)').each do |frame_model| %>
                 <option><%= frame_model.name %></option>
             <% end %>
         </datalist>
@@ -82,7 +82,7 @@
         <label class="new_racquet_child" for="string_brand_1">Brand</label>&nbsp;
         <input class="new_racquet_child" type="text" list="string_brands_1" name="new_racquets[][string_brand]" id="string_brand_1">
         <datalist class="new_racquet_child" id="string_brands_1">
-            <% @string_brands.order(:name).each do |string_brand| %>
+            <% @string_brands.order('LOWER(name)').each do |string_brand| %>
                 <option><%= string_brand.name %></option>
             <% end %>
         </datalist>
@@ -90,7 +90,7 @@
         <label class="new_racquet_child" for="string_model_1">Model</label>&nbsp;
         <input class="new_racquet_child" type="text" list="string_models_1" name="new_racquets[][string_model]" id="string_model_1">
         <datalist class="new_racquet_child" id="string_models_1">
-            <% @string_models.order(:name).each do |string_model| %>
+            <% @string_models.order('LOWER(name)').each do |string_model| %>
                 <option><%= string_model.name %></option>
             <% end %>
         </datalist>
@@ -100,10 +100,10 @@
     <br><br>
     <%# score %>
     <label for="score"><b>Score</b></label><br>
-    <input type="text" name="score" value="<%= @match.score %>" required><br><br>
+    <input type="text" name="score" id="score" value="<%= @match.score %>" required><br><br>
     <%# result %>
     <label for="result"><b>Result</b></label><br>
-    <select name="result" required>
+    <select name="result" id="result" required>
       <option></option>
       <option value="1" <%= "selected=\"selected\"" if @match.result.name == "Win" %>>Win</option>
       <option value="3" <%= "selected=\"selected\"" if @match.result.name == "Loss" %>>Loss</option>

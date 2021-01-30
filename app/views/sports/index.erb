@@ -4,7 +4,7 @@
 <% if !@sports.empty? %>
     <h3>Your sports</h3>
     <ul>
-    <% @sports.order(:name).each do |sport| %>
+    <% @sports.order('LOWER(name)').each do |sport| %>
         <%= "<li><a href=\"/sports/#{sport.slug}\">#{sport.name}</a> [<a href=\"/sports/#{sport.slug}/edit\">edit</a>]</li>" %>
     <% end %>
     </ul>

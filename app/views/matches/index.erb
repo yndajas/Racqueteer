@@ -1,16 +1,16 @@
 <% content_for :title do %>Matches<% end %>
 <h2>Matches</h2>
 <br>
-<%# check if there are any racquets %>
+<%# check if there are any matches %>
 <% if !@matches.empty? %>
-    <%# create sport variable to track which sport's racquets the app is on %>
+    <%# create sport variable to track which sport's matches the app is on %>
     <% sport = @matches.first.sport.name %>
         <h3>Your matches</h3>
     <h4><%= sport %></h4>
     <ul>
     <%# iterate over matches %>
     <% @matches.each do |match| %>
-        <%# update sport variable if a new sport's racquets have been reached %>
+        <%# update sport variable if a new sport's matches have been reached %>
         <% if match.sport.name != sport %>
             </ul>
             <% sport = match.sport.name %>
