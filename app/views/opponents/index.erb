@@ -1,0 +1,15 @@
+<% content_for :title do %>Opponents<% end %>
+<h2>Opponents</h2>
+<br>
+<% if !@opponents.empty? %>
+    <h3>Your opponents</h3>
+    <ul>
+    <% @opponents.order('LOWER(name)').each do |opponent| %>
+        <%= "<li><a href=\"/opponents/#{opponent.slug}\">#{opponent.name}</a> [<a href=\"/opponents/#{opponent.slug}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+    <br>
+<% else %>
+    <p>You currently have no opponents registered!</p>
+<% end %>
+<a href="/opponents/new"><button type="button" class="btn btn-success">Add opponent</button></a>
