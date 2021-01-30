@@ -1,0 +1,58 @@
+<% content_for :title do %>Edit coaching session<% end %>
+<h2>Edit coaching session</h2>
+<br>
+<form id="coaching_session_form" action="/coaching/<%= @coaching_session.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <%# sport %>
+    <label for="sport"><b>Sport</b></label><br>
+    <input type="text" list="sports" name="sport" id="sport" value="<%= @coaching_session.sport.name %>" required>
+    <datalist id="sports">
+        <% @sports.order('LOWER(name)').each do |sport| %>
+            <option><%= sport.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <%# existing coaches %>
+    <% if !@coaches.empty? %>
+        <b>Coaches</b><br>
+        <% @coaches.each do |coach| %>
+            <%# list coach %>
+            <input type="checkbox" class="existing_coach_checkbox" name="coach_ids[]" id="coach_<%= coach.id %>" value="<%= coach.id %>" <%= "checked" if @coaching_session.coaches.include?(coach) %>> <label for="coach_<%= coach.id %>"><%= "#{coach.name}" %></label><br>
+        <% end %>
+        <br>
+    <% end %>
+    <%# new coach(es) %>
+    <label for="new_coach_1"><b>New coach</b></label><br>
+    <input class="new_coach" type="text" name="new_coaches[]" id="new_coach_1">
+    <br><br>
+    <button type="button" class="navbar-text btn btn-primary" onclick="extraCoach();">Add another new coach</button>
+    <br><br>
+    <%# location %>
+    <label for="location"><b>Location</b></label><br>
+    <input type="text" list="locations" name="location" id="location" value="<%= @coaching_session.location.name %>" required>
+    <datalist id="locations">
+        <% @locations.order('LOWER(name)').each do |location| %>
+            <option><%= location.name %></option>
+        <% end %>
+    </datalist>
+    <br><br>
+    <%# date %>
+    <label id="date_label" for="date"><b>Date</b></label><br>
+    <input id="date" type="date" name="date" value="<%= formatted_date(@coaching_session, "date input") %>" required><br><br>
+    <%# focus %>
+    <label for="focus"><b>Focus</b></label><br>
+    <input  id="focus" type="text" name="focus" value="<%= @coaching_session.focus %>" required><br><br>
+    <%# notes %>
+    <label for="notes"><b>Notes</b></label> (optional)<br>
+    <textarea id="notes" name="notes" rows="5" cols="50"><%= @coaching_session.notes %></textarea><br><br>
+    <input type="submit" value="Save" class="btn btn-success">
+</form>
+<br>
+<hr>
+<h3>Delete coaching session</h3>
+<br>
+<p><b>Warning:</b> deleting a coaching session cannot be undone.</p>
+<form action="/coaching/<%= @coaching_session.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" onclick="return confirm('Warning: deleting a coaching session cannot be undone.\n\nAre you sure you wish to delete the coaching session?');" value="Delete coaching session" class="btn btn-danger">
+</form>
