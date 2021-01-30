@@ -24,6 +24,15 @@ class CoachingSessionsController < ApplicationController
     end
 
     # show
+    get '/coaching/:id' do
+        @coaching_session = CoachingSession.where(:id => params[:id], :user_id => current_user.id)[0]
+        if @coaching_session
+            erb :'/coaching_sessions/show'
+        else
+            flash[:message] = {:type => "warning", :content => "Coaching session not found"}
+            redirect '/coaching'
+        end
+    end
 
     # edit
     get '/coaching/:id/edit' do

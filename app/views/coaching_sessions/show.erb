@@ -1,0 +1,18 @@
+<% content_for :title do %>coaching - <%= formatted_date(@coaching_session, "short") %><% end %>
+<h2>Coaching on <%= formatted_date(@coaching_session, "long") %></h2>
+<br>
+<h3><%= @coaching_session.sport.name %> at <%= @coaching_session.location.name %></h3>
+<h4>Coaches</h4>
+<ul>
+<% @coaching_session.coaches.order('LOWER(name)').each do |coach| %>
+        <%= "<li>#{coach.name}</li>" %>
+<% end %>
+</ul>
+<h4>Focus</h4>
+<ul><li><%= @coaching_session.focus %></p></li></ul>
+<% if @coaching_session.notes.length > 0 %>
+    <b>Notes</b><br>
+    <%= @coaching_session.notes %><br><br>
+<% end %>
+<br>
+<a href="/coaching/<%= @coaching_session.id %>/edit"><button type="button" class="btn btn-primary">Edit coaching session</button></a>
