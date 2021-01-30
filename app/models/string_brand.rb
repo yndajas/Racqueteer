@@ -1,4 +1,6 @@
 class StringBrand < ActiveRecord::Base
-    belongs_to :user
+    require_relative "./concerns/attributable"
+    include Attributable
+
     has_many :racquets
 end
