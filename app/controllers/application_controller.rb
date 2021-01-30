@@ -54,7 +54,7 @@ class ApplicationController < Sinatra::Base
 
     def get_ordered_matches
       sql = <<-SQL
-        SELECT id, user_id, sport, opponent, start_date, end_date, result_id, sport_id, opponent_id
+        SELECT id, user_id, sport, opponent, start_date, end_date, result_id, score, sport_id, opponent_id
         FROM (SELECT * FROM matches WHERE user_id = #{current_user.id}) m
         INNER JOIN (SELECT id as sport_id2, name as sport FROM sports) s ON m.sport_id = s.sport_id2
         INNER JOIN (SELECT id as opponent_id2, name as opponent FROM opponents) o ON m.opponent_id = o.opponent_id2
