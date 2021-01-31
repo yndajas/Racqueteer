@@ -3,21 +3,28 @@
 # Racqueteer
 Keep track of your racquet sports activities with this lightweight web app. Record and review your matches, coaching and racquets, and access a breakdown of each by sport, opponent, coach and more!
 
-## Installation
+## Local use
+
+You can run a copy of this app offline for local use. After cloning or downloading the repository, follow the instructions below.
+
+### Installation
+
+The following instructions are for Windows Subsystem for Linux/Ubuntu, but it's also possible to run the app on other systems. The only difference should be the method for starting the PostgreSQL server - I don't have instructions for this, but <a href="https://www.postgresql.org" target="_blank">check the PostgreSQL website</a> for more information.
 
 Install Ruby (<a href="https://www.ruby-lang.org/en/documentation/installation" target="_blank" title="Ruby installation">help</a>), then in a terminal:
 1. `gem install bundler`
-2. change directory to Racqueteer<br>(e.g. `cd "C:\Users\yndaj\Downloads\Racqueteer"`)
+2. change directory to Racqueteer (e.g. `cd /mnt/c/Users/yndaj/Documents/GitHub/Racqueteer`, replacing the path with wherever you've downloaded/moved the repository)
 3. `bundle install`
+4. if you don't have PostgreSQL installed: `sudo apt-get install postgresql`
+5. `sudo service postgresql start` (if you get an error saying a user doesn't exist, try the following first, changing '<USERNAME>' to the username mentioned in the error: `sudo -u postgres createuser --superuser <USERNAME>`)
+6. `rake resetdb` - or, if you want to start with a clean database (no test data), run `rake db:drop`, `rake db:create` and `rake db:migrate`
 
-## Usage
+### Usage
 
 In a terminal:
 1. Make sure you're in the Racqueteer directory (via `cd`)
 2. `shotgun`
 3. the first line after you execute `shotgun` should contain an address like http://127.0.0.1:9393 - open this address in your browser to start using Racqueteer!
-
-Note: if you want to reset the database, removing the test data, execute the following in the terminal: `rake resetdb`
 
 ## Features
 
