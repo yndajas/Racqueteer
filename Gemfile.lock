@@ -24,10 +24,13 @@ GEM
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.4)
     pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    puma (5.2.0)
+      nio4r (~> 2.0)
     rack (2.2.3)
     rack-flash3 (1.0.5)
       rack
@@ -89,6 +92,7 @@ DEPENDENCIES
   bcrypt
   pg
   pry
+  puma
   rack-flash3
   rails-erd
   rake
@@ -98,6 +102,9 @@ DEPENDENCIES
   sinatra-activerecord
   sinatra-contrib
   tux
+
+RUBY VERSION
+   ruby 2.6.1p33
 
 BUNDLED WITH
    2.1.4
