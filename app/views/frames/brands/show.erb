@@ -1,0 +1,28 @@
+<% content_for :title do %>Frame brands - <%= @frame_brand.name %><% end %>
+<h2><%= @frame_brand.name %></h2>
+<br>
+<% if !@racquets.empty? %>
+    <h3>Racquets</h3>
+    <ul>
+    <%# iterate over racquets %>
+    <% @racquets.each do |racquet| %>
+        <%# list racquets %>
+        <%= "<li><a href=\"/racquets/#{racquet.id}\">#{racquet.frame_brand.name} #{racquet.frame_model.name} x #{racquet.string_brand.name} #{racquet.string_model.name}</a></li>" %>
+    <% end %>
+    </ul>
+<% end %>
+<% if !@matches.empty? %>
+    <% if !@racquets.empty? %>
+        <hr>
+    <% end %>
+    <h3>Matches</h3>
+    <ul>
+    <%# iterate over matches %>
+    <% @matches.each do |match| %>
+        <%# list match %>
+        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.name.downcase} (#{match.score})</a></li>" %>
+    <% end %>
+    </ul>
+<% end %>
+<br>
+<a href="/frames/brands/<%= @frame_brand.slug %>/edit"><button type="button" class="btn btn-primary">Edit frame brand</button></a>
