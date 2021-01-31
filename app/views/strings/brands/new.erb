@@ -1,0 +1,8 @@
+<% content_for :title do %>Add string brand<% end %>
+<h2>Add string brand</h2>
+<br>
+<form action="/strings/brands" method="POST">
+  <label for="name"><b>Name</b></label><br>
+  <input type="text" name="name" id="name" required><br><br>
+  <input type="submit" value="Save" class="btn btn-success">
+</form>

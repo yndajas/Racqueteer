@@ -1,0 +1,18 @@
+<% content_for :title do %>Edit string model<% end %>
+<h2>Edit string model</h2>
+<br>
+<form action="/strings/models/<%= @string_model.slug %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="name"><b>Name</b></label><br>
+    <input type="text" name="name" id="name" value="<%= @string_model.name %>" required><br><br>
+    <input type="submit" value="Update" class="btn btn-success">
+</form>
+<br>
+<hr>
+<h3>Delete string model</h3>
+<br>
+<p><b>Warning:</b> deleting a string model will delete all associated racquets and matches. This cannot be undone.</p>
+<form action="/strings/models/<%= @string_model.slug %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" onclick="return confirm('Warning: deleting a string model will delete all associated racquets and matches. This cannot be undone.\n\nAre you sure you wish to delete the string model?');" value="Delete string model" class="btn btn-danger">
+</form>

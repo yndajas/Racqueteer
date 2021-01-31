@@ -1,0 +1,18 @@
+<% content_for :title do %>Edit frame model<% end %>
+<h2>Edit frame model</h2>
+<br>
+<form action="/frames/models/<%= @frame_model.slug %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="name"><b>Name</b></label><br>
+    <input type="text" name="name" id="name" value="<%= @frame_model.name %>" required><br><br>
+    <input type="submit" value="Update" class="btn btn-success">
+</form>
+<br>
+<hr>
+<h3>Delete frame model</h3>
+<br>
+<p><b>Warning:</b> deleting a frame model will delete all associated racquets and matches. This cannot be undone.</p>
+<form action="/frames/models/<%= @frame_model.slug %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" onclick="return confirm('Warning: deleting a frame model will delete all associated racquets and matches. This cannot be undone.\n\nAre you sure you wish to delete the frame model?');" value="Delete frame model" class="btn btn-danger">
+</form>

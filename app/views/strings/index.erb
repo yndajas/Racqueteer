@@ -1,0 +1,27 @@
+<% content_for :title do %>Strings<% end %>
+<h2>Strings</h2>
+<br>
+<h3>Brands</h3>
+<% if !@string_brands.empty? %>
+    <ul>
+    <% @string_brands.order('LOWER(name)').each do |string_brand| %>
+        <%= "<li><a href=\"/strings/brands/#{string_brand.slug}\">#{string_brand.name}</a> [<a href=\"/strings/brands/#{string_brand.slug}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no string brands registered!</p>
+<% end %>
+<a href="/strings/brands/new"><button type="button" class="btn btn-success">Add string brand</button></a>
+<br>
+<hr>
+<h3>Models</h3>
+<% if !@string_models.empty? %>
+    <ul>
+    <% @string_models.order('LOWER(name)').each do |string_model| %>
+        <%= "<li><a href=\"/strings/models/#{string_model.slug}\">#{string_model.name}</a> [<a href=\"/strings/models/#{string_model.slug}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no string models registered!</p>
+<% end %>
+<a href="/strings/models/new"><button type="button" class="btn btn-success">Add string model</button></a>
