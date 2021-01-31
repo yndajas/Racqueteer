@@ -1,0 +1,29 @@
+<% content_for :title do %>Locations - <%= @location.name %><% end %>
+<h2><%= @location.name %></h2>
+<br>
+<% if !@matches.empty? %>
+    <h3>Matches</h3>
+    <ul>
+    <%# iterate over matches %>
+    <% @matches.each do |match| %>
+        <%# list match %>
+        <%= "<li>#{formatted_date(match, "long")}: <a href=\"/matches/#{match.id}\">#{match.result.name.downcase} (#{match.score})</a></li>" %>
+    <% end %>
+    </ul>
+<% end %>
+<% if !@coaching_sessions.empty? %>
+    <% if !@matches.empty? %>
+        <hr>
+    <% end %>
+    <h3>Coaching sessions</h3>
+    <ul>
+    <%# iterate over coaching sessions %>
+    <% @coaching_sessions.each do |coaching_session| %>
+        <%# list coaching session %>
+        <% focus = coaching_session.focus[0].downcase + coaching_session.focus[1..-1] %>
+        <%= "<li>#{formatted_date(coaching_session, "long")}: <a href=\"/coaching/#{coaching_session.id}\">#{focus}</a> [<a href=\"/coaching/#{coaching_session.id}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% end %>
+<br>
+<a href="/locations/<%= @location.slug %>/edit"><button type="button" class="btn btn-primary">Edit location</button></a>

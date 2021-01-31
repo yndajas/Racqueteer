@@ -1,0 +1,15 @@
+<% content_for :title do %>Locations<% end %>
+<h2>Locations</h2>
+<br>
+<% if !@locations.empty? %>
+    <h3>Your locations</h3>
+    <ul>
+    <% @locations.order('LOWER(name)').each do |location| %>
+        <%= "<li><a href=\"/locations/#{location.slug}\">#{location.name}</a> [<a href=\"/locations/#{location.slug}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+    <br>
+<% else %>
+    <p>You currently have no locations registered!</p>
+<% end %>
+<a href="/locations/new"><button type="button" class="btn btn-success">Add location</button></a>
