@@ -57,12 +57,10 @@ class OpponentsController < ApplicationController
     # destroy
     delete '/opponents/:slug' do
         opponent = Opponent.find_by_slug_and_id(params[:slug], current_user.id)
-                
-        Match.where(opponent_id: opponent.id).each do |match|
-            MatchRacquet.where(match_id: match.id).destroy_all
+        opponent.matches.each do |match|
+            match.match_racquets.destroy_all
             match.destroy
         end
-        
         opponent.destroy
 
         flash[:message] = {:type => "primary", :content => "Opponent successfully deleted"}
