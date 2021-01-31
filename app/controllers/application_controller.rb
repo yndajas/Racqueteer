@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/about' do
+    erb :'/application/about'
+  end
+
   helpers do
     # check if user if logged in
     def logged_in
