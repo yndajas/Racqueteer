@@ -1,0 +1,27 @@
+<% content_for :title do %>Frames<% end %>
+<h2>Frames</h2>
+<br>
+<h3>Brands</h3>
+<% if !@frame_brands.empty? %>
+    <ul>
+    <% @frame_brands.order('LOWER(name)').each do |frame_brand| %>
+        <%= "<li><a href=\"/frames/brands/#{frame_brand.slug}\">#{frame_brand.name}</a> [<a href=\"/frames/brands/#{frame_brand.slug}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no frame brands registered!</p>
+<% end %>
+<a href="/frames/brands/new"><button type="button" class="btn btn-success">Add frame brand</button></a>
+<br>
+<hr>
+<h3>Models</h3>
+<% if !@frame_models.empty? %>
+    <ul>
+    <% @frame_models.order('LOWER(name)').each do |frame_model| %>
+        <%= "<li><a href=\"/frames/models/#{frame_model.slug}\">#{frame_model.name}</a> [<a href=\"/frames/models/#{frame_model.slug}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You currently have no frame models registered!</p>
+<% end %>
+<a href="/frames/models/new"><button type="button" class="btn btn-success">Add frame model</button></a>
