@@ -8,7 +8,7 @@
     <% @coaching_sessions.each do |coaching_session| %>
         <%# list coaching session %>
         <% focus = coaching_session.focus[0].downcase + coaching_session.focus[1..-1] %>
-        <%= "<li>#{formatted_date(coaching_session, "long")}: <a href=\"/coaching/#{coaching_session.id}\">#{focus}</a> [<a href=\"/coaching/#{coaching_session.id}/edit\">edit</a>]</li>" %>
+        <%= "<li>#{formatted_date(coaching_session, "long")}: <a href=\"/coaching/#{coaching_session.id}\">#{focus}</a></li>" %>
     <% end %>
     </ul>
 <% end %>
