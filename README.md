@@ -24,7 +24,7 @@ Note: if you want to reset the database, removing the test data, execute the fol
 Record, view, edit and delete information about your racquet sports activities. The following is a breakdown of the structure of Racqueteer, including the information you can record and view.
 
 ### Dashboard
-Up to five recent matches and coaching sessions, plus a list of all sports and racquets
+Up to five recent matches and coaching sessions, plus a list of all sports and racquets.
 
 ### Sports
 A list of all sports, and per sport:
