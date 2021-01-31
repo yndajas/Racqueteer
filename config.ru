@@ -7,6 +7,8 @@ end
 use Rack::MethodOverride
 use CoachesController
 use CoachingSessionsController
+use FramesController
+use FrameBrandsController
 use LocationsController
 use MatchesController
 use OpponentsController
