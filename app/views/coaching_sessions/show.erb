@@ -5,7 +5,7 @@
 <h4>Coaches</h4>
 <ul>
 <% @coaching_session.coaches.order('LOWER(name)').each do |coach| %>
-        <%= "<li>#{coach.name}</li>" %>
+        <%= "<li><a href=\"/coaches/#{coach.slug}\">#{coach.name}</a></li>" %>
 <% end %>
 </ul>
 <h4>Focus</h4>
