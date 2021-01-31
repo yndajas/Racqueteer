@@ -1,0 +1,15 @@
+<% content_for :title do %>Coaches<% end %>
+<h2>Coaches</h2>
+<br>
+<% if !@coaches.empty? %>
+    <h3>Your coaches</h3>
+    <ul>
+    <% @coaches.order('LOWER(name)').each do |coach| %>
+        <%= "<li><a href=\"/coaches/#{coach.slug}\">#{coach.name}</a> [<a href=\"/coaches/#{coach.slug}/edit\">edit</a>]</li>" %>
+    <% end %>
+    </ul>
+    <br>
+<% else %>
+    <p>You currently have no coaches registered!</p>
+<% end %>
+<a href="/coaches/new"><button type="button" class="btn btn-success">Add coach</button></a>

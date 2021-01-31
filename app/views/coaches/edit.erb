@@ -1,0 +1,18 @@
+<% content_for :title do %>Edit coach<% end %>
+<h2>Edit coach</h2>
+<br>
+<form action="/coaches/<%= @coach.slug %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="name"><b>Name</b></label><br>
+    <input type="text" name="name" id="name" value="<%= @coach.name %>" required><br><br>
+    <input type="submit" value="Update" class="btn btn-success">
+</form>
+<br>
+<hr>
+<h3>Delete coach</h3>
+<br>
+<p><b>Warning:</b> deleting a coach will delete all associated coaching sessions. This cannot be undone.</p>
+<form action="/coaches/<%= @coach.slug %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" onclick="return confirm('Warning: deleting a coach will delete all associated coaching sessions. This cannot be undone.\n\nAre you sure you wish to delete the coach?');" value="Delete coach" class="btn btn-danger">
+</form>
