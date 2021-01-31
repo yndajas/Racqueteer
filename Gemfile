@@ -6,7 +6,7 @@ gem 'activerecord', '~> 6.0.3.4', :require => 'active_record' # models in MVC
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord' # Sinatra x ActiveRecord
 gem 'rake' # tasks
 gem 'require_all' # require all relevant folders
-gem 'sqlite3' # SQL database
+gem 'pg' # PostgreSQL database
 gem 'shotgun' # auto-reload app on every change
 gem 'pry' # open console with binding (when `binding.pry` is run)
 gem 'bcrypt' # password hashing

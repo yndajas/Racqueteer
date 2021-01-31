@@ -1,6 +1,17 @@
-default: &default
-  adapter: 'sqlite3'
-  database: 'db/racqueteers.sqlite'
-
 development:
-  <<: *default
+  adapter: postgresql
+  database: racqueteers_development
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  database: racqueteers_test
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  database: racqueteers_production
+  pool: 5
+  timeout: 5000
