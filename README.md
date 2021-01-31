@@ -3,9 +3,13 @@
 # Racqueteer
 Keep track of your racquet sports activities with this lightweight web app. Record and review your matches, coaching and racquets, and access a breakdown of each by sport, opponent, coach and more!
 
+## Online use
+
+The app is available to use for free at <a href="https://racqueteer.herokuapp.com">racqueteer.herokuapp.com</a>!
+
 ## Local use
 
-You can run a copy of this app offline for local use. After cloning or downloading the repository, follow the instructions below.
+You can run a copy of the app offline for local use. After cloning or downloading the repository, follow the instructions below.
 
 ### Installation
 
