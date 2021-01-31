@@ -7,9 +7,9 @@ class UsersController < ApplicationController
             SELECT id, user_id, frame_brand, frame_model, string_brand, string_model, frame_brand_id, frame_model_id, string_model_id, string_brand_id
             FROM (SELECT * FROM racquets WHERE user_id = #{current_user.id}) r
             INNER JOIN (SELECT id as frame_brand_id2, name as frame_brand FROM frame_brands) fb ON r.frame_brand_id = fb.frame_brand_id2
-            INNER JOIN (SELECT id as frame_model_id2, name as frame_model FROM frame_models) fb ON r.frame_model_id = fb.frame_model_id2
-            INNER JOIN (SELECT id as string_brand_id2, name as string_brand FROM string_brands) fb ON r.string_brand_id = fb.string_brand_id2
-            INNER JOIN (SELECT id as string_model_id2, name as string_model FROM string_models) fb ON r.string_model_id = fb.string_model_id2
+            INNER JOIN (SELECT id as frame_model_id2, name as frame_model FROM frame_models) fm ON r.frame_model_id = fm.frame_model_id2
+            INNER JOIN (SELECT id as string_brand_id2, name as string_brand FROM string_brands) sb ON r.string_brand_id = sb.string_brand_id2
+            INNER JOIN (SELECT id as string_model_id2, name as string_model FROM string_models) sm ON r.string_model_id = sm.string_model_id2
             ORDER BY LOWER(frame_brand), LOWER(frame_model), LOWER(string_brand), LOWER(string_model)
         SQL
         @racquets = Racquet.find_by_sql(sql)
