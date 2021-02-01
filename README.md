@@ -7,7 +7,7 @@ You can view a demo of the app over on YouTube: <a href="https://www.youtube.com
 
 ## Online use
 
-The app is available to use for free at <a href="https://racqueteer.herokuapp.com">racqueteer.herokuapp.com</a>!
+The app is available to use for free at <a href="http://racqueteer.yndajas.co">racqueteer.yndajas.co</a> (link will redirect to Heroku)!
 
 ## Local use
 
