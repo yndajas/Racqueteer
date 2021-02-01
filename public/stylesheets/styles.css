@@ -3,6 +3,23 @@ html {
     min-height: 100%;
 }
 
+body {
+    padding-bottom: 60px;
+    background-repeat: repeat;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body.colour {
+    background-image: url("/images/background.png");
+}
+
+body.mono {
+    background-image: url("/images/background_mono.png");
+}
+
+body.white {
+}
+
 header {
     background-color: #dfff4f;
     border-bottom: 1px solid rgba(0,0,0,.25);
@@ -23,30 +40,18 @@ main {
     padding-bottom: 20px;
 }
 
-body {
-    padding-bottom: 60px;
-    background-repeat: repeat;
-    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+/* list-style-type and content combine to change bullet; padding and margin combine to get the positioning right, including aligning the first line of text with following lines */
+main li {
+    list-style-type: none;
+    padding-left: 10px;
 }
-
-body.colour {
-    background-image: url("/images/background.png");
-}
-
-body.mono {
-    background-image: url("/images/background_mono.png");
-}
-
-body.white {
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #07DEC4;
-    border-top: 1px solid rgba(0,0,0,.25);
+  
+main li::before {
+      content: "\1F3BE";
+      margin-left: -27px;
+      margin-right: 10px; 
+      font-size: 0.75rem;
+      vertical-align: middle;
 }
 
 input[type=text], input[type=email], input[type=password], input[type=date], select, textarea {
@@ -64,16 +69,15 @@ textarea {
     max-width: 100%;
 }
 
-/* list-style-type and content combine to change bullet; padding and margin combine to get the positioning right, including aligning the first line of text with following lines */
-main li {
-    list-style-type: none;
-    padding-left: 10px;
+.iframe_container {
+    max-width: 560px;
 }
-  
-main li::before {
-      content: "\1F3BE";
-      margin-left: -27px;
-      margin-right: 10px; 
-      font-size: 0.75rem;
-      vertical-align: middle;
-}  
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #07DEC4;
+    border-top: 1px solid rgba(0,0,0,.25);
+}
