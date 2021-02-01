@@ -60,6 +60,10 @@ input[type=text], input[type=email], input[type=password], input[type=date], sel
     height: 38px;
 }
 
+textarea {
+    max-width: 100%;
+}
+
 /* list-style-type and content combine to change bullet; padding and margin combine to get the positioning right, including aligning the first line of text with following lines */
 main li {
     list-style-type: none;
