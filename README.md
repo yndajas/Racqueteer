@@ -3,6 +3,8 @@
 # Racqueteer
 Keep track of your racquet sports activities with this lightweight web app. Record and review your matches, coaching and racquets, and access a breakdown of each by sport, opponent, coach and more!
 
+You can view a demo of the app over on YouTube: <a href="https://www.youtube.com/watch?v=nK35Tuxfkso" target="_blank" title="app demo on YouTube">youtube.com/watch?v=nK35Tuxfkso</a>.
+
 ## Online use
 
 The app is available to use for free at <a href="https://racqueteer.herokuapp.com">racqueteer.herokuapp.com</a>!
