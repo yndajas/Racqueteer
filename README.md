@@ -91,7 +91,7 @@ Bug reports and pull requests are welcome on GitHub at [https://github.com/yndaj
 
 ## Licence
 
-This gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+This app is available open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Credits
 Logo/favicon made by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a>, available <a href="https://www.flaticon.com/free-icon/tennis_3445655" target="_blank" title="Logo/favicon">here</a>.
