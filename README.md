@@ -89,7 +89,7 @@ A list of all locations, and per location:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/yndajas/Racqueteer](https://github.com/yndajas/Racqueteer).
+Bug reports and pull requests are welcome on GitHub at [github.com/yndajas/Racqueteer](https://github.com/yndajas/Racqueteer).
 
 ## Licence
 
